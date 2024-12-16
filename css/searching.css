@@ -1,0 +1,445 @@
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Header and Sidebar */
+header {
+    background-color: #008080;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0 rem;
+    height:20px;
+    font-family: "Alumni Sans Collegiate One", serif;
+
+    font-size: 30px;
+    text-shadow: 
+                -1px -1px 0px black,  
+                 1px -1px 0px black,
+                -1px  1px 0px black,
+                 1px  1px 0px black; 
+    height: 50px;
+}
+
+.header-logo .logo {
+    height: 75px;
+    width: 75px;
+    margin-right: 10px;
+    animation: pulse 2s infinite; /* Pulsating animation */
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Slightly enlarges */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.header-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 30rem;
+    border-style:initial;
+}
+
+.header-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    position: relative; /* Needed for the underline effect */
+    padding: 5px 10px; /* Adds some spacing for better click targets */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scaling */
+}
+
+.header-links a::after {
+    content: ""; /* Pseudo-element for underline effect */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.header-links a:hover {
+    color: #008080; /* Golden color on hover */
+    transform: scale(1.05); /* Slight scaling for emphasis */
+}
+
+.header-links a:hover::after {
+    width: 100%; /* Expand underline */
+}
+
+.header-links a:focus {
+    outline: none;
+    color: #00ffff; /* Cyan color for focus */
+}
+
+
+/* Search Section */
+.search-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 100px auto;
+    margin-bottom: 10px;
+    z-index: 1;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border: solid 1px #008080;
+    text-align: center;
+    justify-content: center;
+}
+
+.search-section input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+}
+
+.search-section .filters label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.search-section select, .search-section .dropdown button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-button {
+    background-color: #008080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #006666;
+}
+
+.search-summary h3 {
+    text-align: center;
+}
+
+#interactiveMapButton {
+    /* Style the button as needed */
+    background-color: #008080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+/* Styling for the results section container */
+.results-section-container-header {
+    margin: 5px auto;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 2px solid #008080;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    text-align: center;
+}
+
+/* Updated Results Section Styling */
+.results-section-container {
+    margin: 0 auto; /* Center the results container horizontally */
+    max-width: 800px; /* Adjust the maximum width as needed */
+    padding: 15px;
+    background-color: #ffffff; /* Light background */
+    border: 2px solid #008080;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Room card styling with shadow and better structure */
+.room-card {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction:row; /* If you want items to stack vertically */
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 128, 128, 0.15); /* Subtle teal shadow */
+    border-left: 5px solid #008080;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-top: solid 1px #008080;
+    border-right: solid 1px #008080;
+    border-bottom: solid 1px #008080;
+    margin-bottom: 20px;
+}
+
+.room-card:hover {
+    transform: translateY(-3px); /* Elevate card on hover */
+    box-shadow: 0 6px 12px rgba(0, 128, 128, 0.25);
+}
+
+/* Room image or icon placeholder */
+.room-image-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #666;
+}
+
+/* Room info styling with spacing */
+.room-info {
+    flex: 1;
+}
+
+.room-info p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 1em;
+}
+
+/* Updated add button styling for aesthetics */
+.add-button {
+    background-color: #008080;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 60px;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 4px 4px 10px rgba(0, 128, 128, 0.2); /* More pronounced shadow */
+    border: solid 1px #333;
+}
+
+.add-button:hover {
+    background-color: #006666;
+    transform: scale(1.1); /* Slight enlarge on hover */
+}
+
+/* footer */
+.main-footer {
+    background-color: #008080;
+    color: var(--white);
+    padding: 2rem 1rem;
+    box-shadow: 
+    0 8px 16px rgba(0.5, 0.5, 0.5, 0.5); /* Outer shadow */
+    border-radius: 5px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: 
+    0 8px 16px rgba(0.5, 0.5, 0.5, 0.5), /* Outer shadow */
+    inset 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5); /* Inner shadow */
+}
+
+.footer-info,
+.footer-links,
+.footer-social {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem; /* Add padding to each section */
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-left: 40px; /* Space between logo and title */
+}
+
+.footer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem; /* Space between contact info items */
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.footer-links ul,
+.social-links {
+    list-style: none;
+    padding: 0; /* Remove default padding */
+}
+
+.footer-links a,
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    padding: 0.5rem 0;
+    
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid white;
+    
+}
+
+.feedback-button {
+    background-color: white; /* Primary color */
+    color: #006666; /* Text color */
+    border: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem; /* Font size */
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Space above the button */
+}
+
+.feedback-button:hover {
+    background-color: #006666; /* Darker shade on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .available-rooms,
+    .features-section,
+    .main-footer,
+    .footer-content {
+        margin: 1rem;
+        padding: 1rem; /* Reduced padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items on smaller screens */
+        align-items: center; /* Center align items */
+        justify-content: center;
+    }
+} 
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .available-rooms,
+    .features-section,
+    .main-footer,
+    .footer-content {
+        margin: 1rem;
+        padding: 1rem; /* Reduced padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items on smaller screens */
+        align-items: center; /* Center align items */
+        justify-content: center;
+    }
+} 
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .search-section {
+        padding: 15px;
+        margin: 100px auto;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    .search-section input[type="text"] {
+        margin-bottom: 10px;
+    }
+
+    .search-section .filters {
+        display: block;
+        text-align: center;
+    }
+
+    .sidebar {
+        width: 60%;
+    }
+    .menu-toggle {
+        margin-right: 40px;
+    }
+}

@@ -1,0 +1,268 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  "apiKey": "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+  authDomain: "visual-visionaries.firebaseapp.com",
+  projectId: "visual-visionaries",
+  storageBucket: "visual-visionaries.firebasestorage.app",
+  messagingSenderId: "24641645399",
+  appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+  measurementId: "G-TQRQKBESP5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const scheduleData = [
+    {
+      "day": "Monday",
+      "rooms": [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 12:00 PM", status: "Available" },
+            { time: "12:00 PM - 2:00 PM", status: "Occupied" },
+            { time: "2:00 PM - 4:00 PM", status: "Occupied" },
+            { time: "4:00 PM - 6:00 PM", status: "Available" },
+            { time: "6:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 12:00 PM", status: "Available" },
+            { time: "12:00 PM - 2:00 PM", status: "Available" },
+            { time: "2:00 PM - 4:00 PM", status: "Available" },
+            { time: "4:00 PM - 6:00 PM", status: "Available" },
+            { time: "6:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", // New room
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Available" },
+            { time: "9:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Occupied" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Occupied" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" },
+            { time: "6:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    },
+    {
+      day: "Tuesday",
+      rooms: [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 8:00 AM", status: "Occupied" },
+            { time: "8:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 12:00 PM", status: "Available" },
+            { time: "12:00 PM - 2:00 PM", status: "Available" },
+            { time: "2:00 PM - 4:00 PM", status: "Occupied" },
+            { time: "4:00 PM - 6:00 PM", status: "Available" },
+            { time: "6:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Occupied" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", 
+          timeslots: [
+            { time: "7:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Occupied" },
+            { time: "1:00 PM - 3:00 PM", status: "Occupied" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    },
+    {
+      day: "Wednesday",
+      rooms: [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 1:00 PM", status: "Occupied" },
+            { time: "1:00 PM - 2:00 PM", status: "Available" },
+            { time: "2:00 PM - 4:00 PM", status: "Occupied" },
+            { time: "4:00 PM - 6:00 PM", status: "Available" },
+            { time: "6:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Occupied" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", 
+          timeslots: [
+            { time: "7:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    },
+    {
+      day: "Thursday",
+      rooms: [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 8:00 AM", status: "Available" },
+            { time: "8:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Occupied" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", 
+          timeslots: [
+            { time: "7:00 AM - 10:00 AM", status: "Occupied" },
+            { time: "10:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    },
+    {
+      day: "Friday",
+      rooms: [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Occupied" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Available" },
+            { time: "9:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", 
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Occupied" },
+            { time: "9:00 AM - 11:00 AM", status: "Occupied" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 4:00 PM", status: "Occupied" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    },
+    {
+      day: "Saturday",
+      rooms: [
+        {
+          floor: "1F",
+          name: "OS ROOM",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Available" },
+            { time: "9:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 101",
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Available" },
+            { time: "9:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+        {
+          floor: "1F",
+          name: "CCL 102", 
+          timeslots: [
+            { time: "7:00 AM - 9:00 AM", status: "Available" },
+            { time: "9:00 AM - 11:00 AM", status: "Available" },
+            { time: "11:00 AM - 1:00 PM", status: "Available" },
+            { time: "1:00 PM - 3:00 PM", status: "Available" },
+            { time: "3:00 PM - 5:00 PM", status: "Available" },
+            { time: "5:00 PM - 8:00 PM", status: "Available" }
+          ],
+        },
+      ],
+    }
+  ];
+  

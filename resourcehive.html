@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive - Search</title>
+    <link rel="stylesheet" href="css/resourcehive.css">
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <p>ResourceHive</p>
+        </div>
+        <div class="header-links">
+            <a href="javascript:void(0)" onclick="scrollToTop()">Home</a>
+            <a href="#">About</a>
+            <a href="myreservation.html">Reservations</a>
+            <a href="#">Contact</a>
+            <a href="profile.html">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </header>
+
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <h1>Effortless Resource Booking for Professors</h1>
+            <p>Reserve the right place for your needs with ease and quick access to the facility of booking and management.</p>
+            <button id="reserveBtn" onclick="redirectToSearch()">Reserve Now</button>
+        </div>
+    </section>
+
+    <section class="available-rooms">
+        <h2 class="section-title">Frequently Available Rooms</h2>
+        <div class="room-grid">
+            <div class="room-card" aria-label="Room 1 details">
+                <h3>Room 1</h3>
+                <p>Details about Room 1...</p>
+            </div>
+            <div class="room-card" aria-label="Room 2 details">
+                <h3>Room 2</h3>
+                <p>Details about Room 2...</p>
+            </div>
+            <div class="room-card" aria-label="Room 3 details">
+                <h3>Room 3</h3>
+                <p>Details about Room 3...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">Features Recommended for You</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Room Reservation</h3>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Schedule Viewing</h3>
+            </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Finding Rooms</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                    <img src="img/resourcehive_logo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                    <h2 class="footer-title">Resource Hive</h2>
+                <address class="contact-info">
+                    <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                    <p><img src="img/email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                    <p><img src="img/map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+                </address>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about-resource-hive">About Resource Hive</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                    <li><a href="#how-to-book">How to Book</a></li>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow us on</h3>
+                <ul class="social-links">
+                    <li><a href="fb-url" aria-label="Facebook"><img src="img/fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                    <li><a href="ig-url" aria-label="Instagram"><img src="img/ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                    <li><a href="yt-url" aria-label="YouTube"><img src="img/yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+                </ul>
+                <button class="feedback-button">
+                    <span style="color: black;">Send feedback</span> 
+                    <span style="color: blue;"><br>(Click here)</span>
+                </button>
+                
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+    
+    <script src="js/resourcehive.js"></script>
+</body>
+</html>

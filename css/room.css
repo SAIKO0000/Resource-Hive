@@ -1,0 +1,453 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #333;
+    overflow-x: hidden;
+}
+
+
+header {
+    background-color: #008080;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+  
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    opacity: 90%;
+    z-index: 2;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0 rem;
+    height:20px;
+    font-family: "Alumni Sans Collegiate One", serif;
+
+    font-size: 30px;
+    text-shadow: 
+                -1px -1px 0px black,  
+                 1px -1px 0px black,
+                -1px  1px 0px black,
+                 1px  1px 0px black; 
+    height: 50px;
+}
+
+
+.header-logo .logo {
+    height: 75px;
+    width: 75px;
+    margin-right: 10px;
+    animation: pulse 2s infinite; /* Pulsating animation */
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Slightly enlarges */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.header-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 30rem;
+    border-style:initial;
+}
+
+.header-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    position: relative; /* Needed for the underline effect */
+    padding: 5px 10px; /* Adds some spacing for better click targets */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scaling */
+}
+
+.header-links a::after {
+    content: ""; /* Pseudo-element for underline effect */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.header-links a:hover {
+    color: #008080; /* Golden color on hover */
+    transform: scale(1.05); /* Slight scaling for emphasis */
+}
+
+.header-links a:hover::after {
+    width: 100%; /* Expand underline */
+}
+
+.header-links a:focus {
+    outline: none;
+    color: #00ffff; /* Cyan color for focus */
+}
+
+
+/* Main reservation container */
+.reservation-container {
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid #008080;
+    border-radius: 10px;
+}
+
+/* Room info section */
+.room-info {
+    text-align: center;
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Day selector dropdown */
+.day-selector {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Schedule table styling */
+.schedule-table {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.schedule-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.schedule-table th {
+    background-color: #008080;
+    color: white;
+}
+
+/* Clickable time slots styling */
+.clickable {
+    cursor: pointer;
+    background-color: black;
+
+}
+
+.clickable:hover {
+    background-color: #b2ebf2;
+}
+
+
+.available-slot {
+    background-color: #008080;; /* Green color */
+    color: white; /* White text */
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  
+}
+
+.available-slot:hover {
+    background-color: red; /* Darker green when hovered */
+}
+
+
+/* Reservation form styling */
+.reservation-form {
+    text-align: center;
+    padding: 15px;
+    background-color: #008080;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+#reserveButton {
+    background-color: #008080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#reserveButton:hover {
+    background-color: #008080;
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
+    overflow: auto; /* Enable scrolling if needed */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Close button styling */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Confirm button styling */
+button {
+    background-color:#008080;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: black;
+}
+
+/* Textarea Styling */
+textarea {
+    width: 100%;
+    padding: 7px;
+    border: 2px 2px 2px 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+/* footer */
+.main-footer {
+    background-color: #008080;
+    color: var(--white);
+    padding: 2rem 1rem;
+    box-shadow: 
+    0 8px 16px rgba(0.5, 0.5, 0.5, 0.5); /* Outer shadow */
+    border-radius: 5px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-shadow: 
+    0 8px 16px rgba(0.5, 0.5, 0.5, 0.5), /* Outer shadow */
+    inset 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5); /* Inner shadow */
+}
+
+.footer-info,
+.footer-links,
+.footer-social {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem; /* Add padding to each section */
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-left: 40px; /* Space between logo and title */
+}
+
+.footer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem; /* Space between contact info items */
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.footer-links ul,
+.social-links {
+    list-style: none;
+    padding: 0; /* Remove default padding */
+}
+
+.footer-links a,
+.social-links a {
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    padding: 0.5rem 0;
+    
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid white;
+    
+}
+
+.feedback-button {
+    background-color: white; /* Primary color */
+    color: #006666; /* Text color */
+    border: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem; /* Font size */
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Space above the button */
+}
+
+.feedback-button:hover {
+    background-color: #006666; /* Darker shade on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .available-rooms,
+    .features-section,
+    .main-footer,
+    .footer-content {
+        margin: 1rem;
+        padding: 1rem; /* Reduced padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items on smaller screens */
+        align-items: center; /* Center align items */
+        justify-content: center;
+    }
+} 
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .available-rooms,
+    .features-section,
+    .main-footer,
+    .footer-content {
+        margin: 1rem;
+        padding: 1rem; /* Reduced padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items on smaller screens */
+        align-items: center; /* Center align items */
+        justify-content: center;
+    }
+} 
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .search-section {
+        padding: 15px;
+        margin: 100px auto;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    .search-section input[type="text"] {
+        margin-bottom: 10px;
+    }
+
+    .search-section .filters {
+        display: block;
+        text-align: center;
+    }
+
+    .sidebar {
+        width: 60%;
+    }
+    .menu-toggle {
+        margin-right: 40px;
+    }
+}
+
+/*available time will hover*/
+.available-row {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.available-row:hover {
+    background-color: lightblue;
+}
+
+.schedule-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.schedule-table th {
+    background-color: teal;
+    color: white;
+}

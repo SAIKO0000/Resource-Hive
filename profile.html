@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One:ital@0;1&family=Bayon&family=Bungee+Spice&family=Eater&family=Kaushan+Script&family=Lobster&family=Nanum+Brush+Script&family=Nerko+One&family=Notable&family=Permanent+Marker&family=Playfair+Display+SC:ital,wght@0,900;1,900&family=Rampart+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>Resource Hive</p>
+        </div>
+        <div class="header-links">
+            <a href="resourcehive.html">Home</a>
+            <a href="#">About</a>
+            <a href="myreservation.html">Reservations</a>
+            <a href="#">Contact</a>
+            <a href="javascript:void(0)" onclick="scrollToTop()">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </header>
+
+    <div class="container">
+        <div class="profile-card">
+            <img src="profile-placeholder.png" alt="Profile Picture">
+            <h1>John Doe</h1>
+            <p>Email: johndoe@cvsu.edu.ph</p>
+            <p>Role: Professor</p>
+            <button class="edit-btn" onclick="toggleEditForm()">Edit Profile</button>
+
+            <div class="edit-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" value="John Doe">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" value="johndoe@cvsu.edu.ph">
+
+                <label for="role">Role:</label>
+                <input type="text" id="role" placeholder="Enter your role" value="Professor">
+
+                <button type="button" onclick="saveChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="resourcehive_logo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                <h2 class="footer-title">Resource Hive</h2>
+                <address class="contact-info">
+                    <p><img src="call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                    <p><img src="email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                    <p><img src="map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+                </address>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about-resource-hive">About Resource Hive</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                    <li><a href="#how-to-book">How to Book</a></li>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow us on</h3>
+                <ul class="social-links">
+                    <li><a href="fb-url" aria-label="Facebook"><img src="fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                    <li><a href="ig-url" aria-label="Instagram"><img src="ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                    <li><a href="yt-url" aria-label="YouTube"><img src="yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+                </ul>
+                <button class="feedback-button">
+                    <span style="color: black;">Send feedback</span>
+                    <span style="color: blue;"><br>(Click here)</span>
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

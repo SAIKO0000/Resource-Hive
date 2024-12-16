@@ -1,0 +1,355 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #333;
+    overflow-x: hidden;
+}
+
+
+header {
+    background-color: #008080;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+  
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    opacity: 90%;
+    z-index: 2;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0 rem;
+    height:20px;
+    font-family: "Alumni Sans Collegiate One", serif;
+
+    font-size: 30px;
+    text-shadow: 
+                -1px -1px 0px black,  
+                 1px -1px 0px black,
+                -1px  1px 0px black,
+                 1px  1px 0px black; 
+    height: 50px;
+}
+
+.header-logo .logo {
+    height: 75px;
+    width: 75px;
+    margin-right: 10px;
+    animation: pulse 2s infinite; /* Pulsating animation */
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Slightly enlarges */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.header-links {
+    display: flex;
+    gap: 15px;
+    margin-left: 0rem;
+    border-style:initial;
+    margin-right: 3rem;
+}
+
+.header-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    position: relative; /* Needed for the underline effect */
+    padding: 5px 10px; /* Adds some spacing for better click targets */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scaling */
+}
+
+.header-links a::after {
+    content: ""; /* Pseudo-element for underline effect */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.header-links a:hover {
+    color: #008080; /* Golden color on hover */
+    transform: scale(1.05); /* Slight scaling for emphasis */
+}
+
+.header-links a:hover::after {
+    width: 100%; /* Expand underline */
+}
+
+.header-links a:focus {
+    outline: none;
+    color: #00ffff; /* Cyan color for focus */
+}
+/* Background for container-bg */
+.container-bg {
+    background-color: #E1F8EC; /* Light green background */
+    padding: 50px 20px; /* Space around the content */
+    text-align: center;
+}
+
+/* Content inside the container */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: -50px auto 50px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border: solid 1px #008080;
+    text-align: center;
+    justify-content: center;
+}
+/* Background for container-bg */
+.container-bg {
+    background-color: #E1F8EC; /* Light green background */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Align text inside the container */
+}
+
+/* Content inside the container */
+.container {
+    max-width: 800px;
+    font-family:sans-serif;
+    color: #333;
+}
+
+.container p {
+    font-size: xxx-large; /* Extra large text for emphasis */
+    margin-bottom: 10px;
+    color: #008080; /* Matches theme color */
+}
+
+.container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Counter styling */
+.counter {
+    background-color: #fff; /* White background for counter */
+    padding: 20px; /* Adds space inside the counter */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: inline-block; /* Ensures it wraps tightly around buttons */
+}
+
+/* Buttons inside the counter */
+.button {
+    display: inline-block;
+    padding: 15px 30px; /* Comfortable clickable area */
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #008080;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px; /* Rounded corners for buttons */
+    margin: 10px; /* Spacing between buttons */
+    transition: all 0.3s ease; /* Smooth transitions */
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Button Hover Effect */
+.button:hover {
+    background-color: #00a3a3; /* Brighter teal on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+/* Button Active Effect */
+.button:active {
+    transform: scale(0.95); /* Pressed effect */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Button styling */
+#FloorBtn {
+    position: relative; /* To position the arrow inside the button */
+    padding: 10px 30px; /* Adds padding inside the button */
+    font-size: 1.2rem; /* Adjust font size */
+    color: #fff; /* White text */
+    background-color: #008080; /* Teal background */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interaction */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for the button */
+#FloorBtn:hover {
+    background-color: #00a3a3; /* Brighter teal on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Arrow down icon inside the button */
+.arrow-down {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid white; /* White arrow color */
+    margin-left: 10px; /* Adds space between text and the arrow */
+    vertical-align: middle; /* Vertically aligns the arrow with the text */
+}
+
+/* Button active effect */
+#FloorBtn:active {
+    transform: scale(0.95); /* Pressed effect */
+}
+/* Style for the select element */
+#Level {
+    padding: 10px 20px; /* Adds space inside the select */
+    position: relative; /* Ensures positioning context for the arrow */
+    font-size: 1rem; /* Adjust font size */
+    color: WHITE; /* Teal text color */
+    background-color: #008080; /* White background */
+    border: 1px solid #E1F8EC; /* Teal border */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    appearance: none; /* Remove default dropdown arrow */
+    width: 200px; /* Fixed width */
+    cursor: pointer; /* Pointer cursor for interaction */
+    transition: all 0.3s ease; /* Smooth transition for hover and focus states */
+    background-image: url('dd.png'); /* Down arrow icon */
+    background-repeat: no-repeat; /* Prevent repeat of the arrow */
+    background-position: right 10px center; /* Position the arrow to the right */
+    background-size: 14px; /* Adjust the size of the arrow */
+}
+
+/* Style for the dropdown arrow in IE */
+#Level::-ms-expand {
+    display: none; /* Hide the default arrow in Internet Explorer */
+}
+
+/* Hover effect */
+#Level:hover {
+    background-color: #00a3a3; /* Light green background on hover */
+    border-color: #008080; /* Change border color on hover */
+}
+
+/* Focus effect */
+#Level:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #E1F8EC; /* Teal border on focus */
+    background-color: #00a3a3; /* Light green background on focus */
+}
+
+/* Option styling */
+#Level option {
+    padding: 10px; /* Adds space inside each option */
+    font-size: 1rem; /* Font size for options */
+    color: #00a3a3; /* Teal text color */
+    background-color: #fff; /* White background */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for option items */
+#Level option:hover {
+    background-color: #E1F8EC; /* Light green highlight on hover */
+    color: #333; /* Darker text color on hover */
+}
+
+
+
+
+/* Pop-up window container */
+/* Generic styles for all pop-ups */
+.window {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Inner content of the pop-up */
+.window-inner {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Buttons inside the pop-up */
+.F1Btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    color: white;
+    background-color: #008080;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    width: 120px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem;
+}
+
+/* Hover effect for buttons */
+.F1Btn:hover {
+    background-color: #00a3a3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the close button */
+.close-btn:hover {
+    background: #ff1a1a;
+}
+
+

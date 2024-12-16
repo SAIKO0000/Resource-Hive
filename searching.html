@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive - Search</title>
+    <link rel="stylesheet" href="css/searching.css">
+    
+
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>Resource Hive</p>
+        </div>
+        <div class="header-links">
+            <a href="resourcehive.html">Home</a>
+            <a href="#">About</a>
+            <a href="myreservation.html">Reservations</a>
+            <a href="#">Contact</a>
+            <a href="profile.html">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </header>
+
+    <section id="searchSection" class="search-section">
+        <input type="text" placeholder="Enter Room Name" id="searchInput">
+        <select id="roomType">
+            <option value="">Select Room Type</option>
+            <option value="classroom">Classroom</option>
+            <option value="laboratory">Laboratory</option>
+        </select>
+        <button id="searchButton">Search</button>
+        <button id="interactiveMapButton" onclick="goToInteractiveMap()">View Floors</button>
+    </section>
+
+    <div class="search-summary">
+        <h3 id="searchSummary"></h3>
+    </div>
+
+    <div id="searchResults"></div>
+
+    <!-- Correctly load your custom JS file as a module -->
+    <script type="module" src="js/searching.js"></script>
+</body>
+</html>

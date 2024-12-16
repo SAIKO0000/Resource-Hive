@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive</title>
+    <link rel="stylesheet" href="css/myreservation.css">
+    
+    <!-- Firebase App (for initializing Firebase) -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    
+    <!-- Firebase Authentication -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    
+    <!-- Firebase Firestore -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    
+    <script type="module" src="js/myreservation.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="header-logo">
+            <p>Resource Hive</p>
+        </div>
+        <div class="header-links">
+            <a href="resourcehive.html">Home</a>
+            <a href="#">About</a>
+            <a href="javascript:void(0)" onclick="scrollToTop()">Reservations</a>
+            <a href="#">Contact</a>
+            <a href="profile.html">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    </header>
+
+    <section class="my-reservations">
+
+<h2>Current Reservations</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Room Name</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="reservationTable">
+        <!-- Reservations will be dynamically added here -->
+    </tbody>
+</table>
+
+<!-- Past Reservations -->
+<h2>Past Reservations</h2>
+<table id="pastReservations">
+    <thead>
+        <tr>
+            <th>Room Name</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+    </tbody>
+</table>
+
+    </section>
+
+    <div id="error" class="error-message" style="display: none;">
+        Something went wrong. Please try again later.
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="img/resourcehive_logo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                <h2 class="footer-title">Resource Hive</h2>
+                <address class="contact-info">
+                    <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                    <p><img src="img/email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                    <p><img src="img/map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+                </address>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about-resource-hive">About Resource Hive</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                    <li><a href="#how-to-book">How to Book</a></li>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow us on</h3>
+                <ul class="social-links">
+                    <li><a href="fb-url" aria-label="Facebook"><img src="img/fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                    <li><a href="ig-url" aria-label="Instagram"><img src="img/ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                    <li><a href="yt-url" aria-label="YouTube"><img src="img/yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+                </ul>
+                <button class="feedback-button">
+                    <span style="color: black;">Send feedback</span>
+                    <span style="color: blue;"><br>(Click here)</span>
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+</body>
+</html>

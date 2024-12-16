@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive</title>
+    <link rel="stylesheet" href="css/room.css">
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+
+    <!-- Firebase Firestore -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <p>Resource Hive</p>
+        </div>
+        <div class="header-links">
+            <a href="resourcehive.html">Home</a>
+            <a href="myreservation.html">Reservations</a>
+            <a href="profile.html">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+    </header>
+
+    <section class="reservation-container">
+        <div class="room-info">
+            <!-- Room info will be dynamically added here -->
+        </div>
+
+        <div class="day-selector">
+            <label for="dayDropdown">Day:</label>
+            <select id="dayDropdown">
+                <option value="">Select a Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
+        </div>
+
+        <div id="scheduleTable" class="schedule-table">
+            <h3>Schedule</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    <!-- Schedule rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal for reservation -->
+        <div id="timeModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeTimeModal()">&times;</span>
+                <h3 id="selectedRoomName"></h3>
+                <p id="reservationTime"></p>
+                <textarea id="reservationReason" placeholder="Enter reason for reservation"></textarea>
+                <button id="confirmReservationButton">Confirm Reservation</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                    <img src="resourcehive_logo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                    <h2 class="footer-title">Resource Hive</h2>
+                <address class="contact-info">
+                    <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                    <p><img src="img/email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                    <p><img src="img/map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+                </address>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about-resource-hive">About Resource Hive</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                    <li><a href="#how-to-book">How to Book</a></li>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow us on</h3>
+                <ul class="social-links">
+                    <li><a href="fb-url" aria-label="Facebook"><img src="img/fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                    <li><a href="ig-url" aria-label="Instagram"><img src="img/ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                    <li><a href="yt-url" aria-label="YouTube"><img src="img/yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+                </ul>
+                <button class="feedback-button">
+                    <span style="color: black;">Send feedback</span> 
+                    <span style="color: blue;"><br>(Click here)</span>
+                </button>
+                
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/room.js"></script>
+
+</body>
+</html>
