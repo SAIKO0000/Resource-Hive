@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Hive - Search</title>
-    <link rel="stylesheet" href="css/resourcehive.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
         </div>
         <div class="header-links">
             <a href="javascript:void(0)" onclick="scrollToTop()">Home</a>
-            <a href="contact.html">About</a>
+            <a href="about.html">About</a>
             <a href="myreservation.html">Reservations</a>
             <a href="contact.html">Contact</a>
             <a href="profile.html">Profile</a>
@@ -23,52 +23,30 @@
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
     </header>
 
-    <section class="hero" id="heroSection">
-        <div class="hero-content">
-            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
-            <h1>Effortless Resource Booking for Professors</h1>
-            <p>Reserve the right place for your needs with ease and quick access to the facility of booking and management.</p>
-            <button id="reserveBtn" onclick="redirectToSearch()">Reserve Now</button>
+    <!-- Contact Section -->
+    <section class="contact-container">
+        <!-- Contact Information Box -->
+        <div class="contact-info-box">
+            <h2>Contact Us</h2>
+            <p>+63 961 720 8991</p>
+            <a href="mailto:resourcehive@gmail.com">resourcehive@gmail.com</a>
+            <p>Indang, Cavite</p>
         </div>
-    </section>
 
-    <section class="available-rooms">
-        <h2 class="section-title">Frequently Available Rooms</h2>
-        <div class="room-grid">
-            <div class="room-card" aria-label="Room 1 details">
-                <h3>Room 1</h3>
-                <p>Details about Room 1...</p>
-            </div>
-            <div class="room-card" aria-label="Room 2 details">
-                <h3>Room 2</h3>
-                <p>Details about Room 2...</p>
-            </div>
-            <div class="room-card" aria-label="Room 3 details">
-                <h3>Room 3</h3>
-                <p>Details about Room 3...</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="features-section">
-        <h2 class="section-title">Features Recommended for You</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3 class="feature-title">Room Reservation</h3>
-            </div>
-            <div class="feature-card">
-                <h3 class="feature-title">Schedule Viewing</h3>
-            </div>
-            <div class="feature-card">
-                <h3 class="feature-title">Finding Rooms</h3>
-            </div>
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea rows="4" placeholder="Message" required></textarea>
+            <button type="submit">Send Message</button>
         </div>
     </section>
 
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-info">
-                    <img src="img/resourcehive_logo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                    <img src="img/beelogo.png" alt="Resource Hive Footer Logo" class="footer-logo">
                     <h2 class="footer-title">Resource Hive</h2>
                 <address class="contact-info">
                     <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
@@ -105,6 +83,6 @@
         </div>
     </footer>
     
-    <script src="js/resourcehive.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>
