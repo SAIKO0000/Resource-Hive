@@ -1,8 +1,24 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
-import { getFirestore, collection, getDocs, query, updateDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { 
+    initializeApp 
+} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { 
+    getFirestore, 
+    collection, 
+    getDocs, 
+    query, 
+    where, // <-- Added where
+    updateDoc, 
+    doc, 
+    getDoc, 
+    addDoc, 
+    serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { 
+    getAuth, 
+    onAuthStateChanged 
+} from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 
-// Firebase configuration (replace with your actual config)
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
     authDomain: "visual-visionaries.firebaseapp.com",
@@ -16,15 +32,46 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth();  // Initialize Firebase Authentication
+const auth = getAuth();
 
-// Function to fetch room name from URL
-function getRoomFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('room'); // Get the "room" parameter from the URL
+/**
+ * Function to close the time modal.
+ */
+function closeTimeModal() {
+    const modal = document.getElementById('timeModal');
+    modal.style.display = 'none';
+    document.getElementById('reservationReason').value = '';
 }
 
-// Function to fetch room data from Firestore
+/**
+ * Function to open the time reservation modal.
+ * @param {Array} selectedSlots - The selected time slots.
+ */
+function openTimeModal(selectedSlots) {
+    const modal = document.getElementById('timeModal');
+    const roomNameElement = document.getElementById('selectedRoomName');
+    const timeElement = document.getElementById('reservationTime');
+
+    roomNameElement.textContent = `Room: ${selectedSlots[0].room}`;
+    timeElement.textContent = `Times: ${selectedSlots.map(slot => slot.time).join(', ')}`;
+    modal.setAttribute('data-selected-slots', JSON.stringify(selectedSlots));
+    modal.style.display = 'block';
+}
+
+/**
+ * Function to get the room name from the URL parameters.
+ * @returns {string|null} The room name or null if not found.
+ */
+function getRoomFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('room');
+}
+
+/**
+ * Function to fetch room data from Firestore.
+ * @param {string} roomName - The name of the room.
+ * @param {string} selectedDay - The selected day for the schedule.
+ */
 async function fetchRoomData(roomName, selectedDay) {
     try {
         const q = query(collection(db, "scheduleData"));
@@ -43,7 +90,7 @@ async function fetchRoomData(roomName, selectedDay) {
                     .find((room) => room.name.trim().toLowerCase() === roomName.trim().toLowerCase());
 
                 if (roomData) {
-                    displayRoomInfo(roomData, selectedDay, docRef.id); // Pass the document ID for updates
+                    displayRoomInfo(roomData, selectedDay, docRef.id);
                 } else {
                     console.error(`Room "${roomName}" not found in Firestore.`);
                 }
@@ -56,7 +103,12 @@ async function fetchRoomData(roomName, selectedDay) {
     }
 }
 
-// Function to display room information and schedule for a selected day
+/**
+ * Function to display room information in the UI.
+ * @param {Object} room - The room data.
+ * @param {string} day - The selected day.
+ * @param {string} docId - The Firestore document ID.
+ */
 function displayRoomInfo(room, day, docId) {
     const roomInfoSection = document.querySelector('.room-info');
     roomInfoSection.innerHTML = `
@@ -67,8 +119,42 @@ function displayRoomInfo(room, day, docId) {
     displaySchedule(room, day, docId);
 }
 
-// Function to display the schedule for a specific day in a table
-function displaySchedule(room, day, docId) {
+/**
+ * Function to fetch reserved data from Firestore.
+ * @param {string} roomName - The name of the room.
+ * @param {string} day - The selected day.
+ * @returns {Array} An array of reserved slots.
+ */
+async function fetchReservedData(roomName, day) { // <-- Added day parameter
+    const reservedData = [];
+    try {
+        const q = query(
+            collection(db, "updatedSchedule"),
+            where("room", "==", roomName),
+            where("day", "==", day) // <-- Added day filter
+        );
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            // Ensure that 'reservedBy' exists and is not empty
+            if (data.reservedBy && data.reservedBy.trim() !== "") {
+                reservedData.push(data);
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching reserved data:", error);
+    }
+    return reservedData;
+}
+
+/**
+ * Function to display the schedule for a specific day.
+ * @param {Object} room - The room data.
+ * @param {string} day - The selected day.
+ * @param {string} docId - The Firestore document ID.
+ */
+async function displaySchedule(room, day, docId) {
     const scheduleContainer = document.querySelector('.schedule-table');
     if (!scheduleContainer) {
         console.error("No schedule container found in the DOM.");
@@ -81,7 +167,8 @@ function displaySchedule(room, day, docId) {
         return;
     }
 
-    // Create table structure for the schedule
+    const reservedData = await fetchReservedData(room.name, day); // <-- Pass day
+
     let tableHTML = `
         <table border="1" cellpadding="8" cellspacing="0">
             <thead>
@@ -91,68 +178,61 @@ function displaySchedule(room, day, docId) {
                 </tr>
             </thead>
             <tbody>
-                ${daySchedule.map(slot => `
-                    <tr>
-                        <td>${slot.time}</td>
-                        <td>
-                            ${slot.status === "Available" ? 
-                                `<button class="available-slot" data-room="${room.name}" data-time="${slot.time}" data-docid="${docId}">${slot.status}</button>` 
-                                : slot.status}
-                        </td>
-                    </tr>
-                `).join('')}
+                ${daySchedule.map(slot => {
+                    const reservation = reservedData.find(res => res.time === slot.time);
+                    const rowClass = slot.status === "Available" ? "status-available" : "status-occupied";
+                    return `
+                        <tr class="${rowClass}">
+                            <td>${slot.time}</td>
+                            <td>
+                                ${slot.status === "Available" ? `
+                                    Available
+                                    <input type="checkbox" class="select-slot" 
+                                        data-time="${slot.time}" 
+                                        data-docid="${docId}" 
+                                        data-room="${room.name}" 
+                                        style="margin-left: 10px;">
+                                ` : `
+                                    Occupied
+                                    ${reservation ? `<br><small>Reserved By: ${reservation.reservedBy}</small>` : ''}
+                                `}
+                            </td>
+                        </tr>
+                    `;
+                }).join('')}
             </tbody>
         </table>
     `;
 
     scheduleContainer.innerHTML = tableHTML;
 
-    // Add event listeners to available slots
-    const availableSlots = document.querySelectorAll('.available-slot');
-    availableSlots.forEach(slot => {
-        slot.addEventListener('click', (event) => {
-            const roomName = event.target.getAttribute('data-room');
-            const time = event.target.getAttribute('data-time');
-            const docId = event.target.getAttribute('data-docid');
-            openTimeModal(roomName, time, docId);
-        });
+    const openModalButton = document.createElement('button');
+    openModalButton.textContent = "Reserve Selected Times";
+    openModalButton.classList.add('open-modal-btn');
+    openModalButton.addEventListener('click', () => {
+        const selectedSlots = Array.from(document.querySelectorAll('.select-slot:checked')).map(slot => ({
+            time: slot.getAttribute('data-time'),
+            room: slot.getAttribute('data-room'),
+            docId: slot.getAttribute('data-docid')
+        }));
+
+        if (selectedSlots.length > 0) {
+            openTimeModal(selectedSlots);
+        } else {
+            alert("Please select at least one time slot.");
+        }
     });
+
+    scheduleContainer.appendChild(openModalButton);
 }
 
-// Function to open the modal and populate it with the selected time and room
-function openTimeModal(roomName, time, docId) {
-    const modal = document.getElementById('timeModal');
-    const roomNameElement = document.getElementById('selectedRoomName');
-    const timeElement = document.getElementById('reservationTime');
-
-    roomNameElement.textContent = `Room: ${roomName}`;
-    timeElement.textContent = `Time: ${time}`;
-    modal.setAttribute('data-docid', docId); // Store document ID in modal
-    modal.setAttribute('data-time', time); // Store selected time in modal
-    modal.setAttribute('data-room', roomName); // Add this line to store room name
-    modal.style.display = 'block';
-}
-
-// Function to close the modal
-function closeTimeModal() {
-    const modal = document.getElementById('timeModal');
-    modal.style.display = 'none'; // Hide the modal
-    document.getElementById('reservationReason').value = ''; // Clear the reason input
-}
-
-// Updated confirmReservation function with additional error checking
+/**
+ * Function to confirm reservations.
+ */
 async function confirmReservation() {
     const reservationReason = document.getElementById('reservationReason').value;
     const modal = document.getElementById('timeModal');
-    const docId = modal.getAttribute('data-docid');
-    const time = modal.getAttribute('data-time');
-    const roomName = modal.getAttribute('data-room'); // Retrieve room name
-
-    if (!roomName) {
-        alert("Room name is missing. Please try again.");
-        closeTimeModal();
-        return;
-    }
+    const selectedSlots = JSON.parse(modal.getAttribute('data-selected-slots'));
 
     if (!reservationReason.trim()) {
         alert("Please enter a reason for the reservation.");
@@ -160,7 +240,6 @@ async function confirmReservation() {
     }
 
     try {
-        // Get the current user (from Firebase Authentication)
         const user = auth.currentUser;
         if (!user) {
             alert("You must be logged in to make a reservation.");
@@ -168,63 +247,108 @@ async function confirmReservation() {
             return;
         }
 
-        // Fetch the current document using the document ID
-        const docRef = doc(db, "scheduleData", docId);
-        const docSnapshot = await getDoc(docRef);
+        const dayDropdown = document.querySelector('#dayDropdown');
+        const selectedDay = dayDropdown.value || "monday";
 
-        if (!docSnapshot.exists()) {
-            alert("Error: Document not found.");
-            closeTimeModal();
-            return;
+        for (const { docId, time, room } of selectedSlots) {
+            const docRef = doc(db, "scheduleData", docId);
+            const docSnapshot = await getDoc(docRef);
+
+            if (!docSnapshot.exists()) {
+                alert(`Error: Document for time "${time}" not found.`);
+                continue;
+            }
+
+            const data = docSnapshot.data();
+            const roomData = data.scheduleData.flatMap(entry => entry.rooms).find(r => r.name.trim().toLowerCase() === room.trim().toLowerCase());
+
+            if (!roomData) {
+                console.error(`Room data not found for room: ${room}`);
+                continue;
+            }
+
+            const roomType = roomData.type || 'Unknown';
+            const features = roomData.features || [];
+
+            const updatedSchedule = data.scheduleData.map(entry => {
+                if (entry.rooms.some(r => r.name.trim().toLowerCase() === room.trim().toLowerCase())) {
+                    entry.rooms = entry.rooms.map(r => {
+                        if (r.name.trim().toLowerCase() === room.trim().toLowerCase()) {
+                            Object.keys(r.schedule).forEach(dayKey => {
+                                if (dayKey.toLowerCase() === selectedDay.toLowerCase()) {
+                                    r.schedule[dayKey] = r.schedule[dayKey].map(slot => {
+                                        if (slot.time === time && slot.status === "Available") {
+                                            return { 
+                                                ...slot, 
+                                                status: "Occupied", 
+                                                reason: reservationReason, 
+                                                reservedBy: user.email 
+                                            };
+                                        }
+                                        return slot;
+                                    });
+                                }
+                            });
+                        }
+                        return r;
+                    });
+                }
+                return entry;
+            });
+
+            await updateDoc(docRef, { scheduleData: updatedSchedule });
+
+            const reservationData = {
+                room,
+                roomType,
+                features,
+                reservedBy: user.email,
+                time,
+                reason: reservationReason,
+                status: "Occupied",
+                day: selectedDay,
+                createdAt: serverTimestamp() // <-- Use serverTimestamp here
+            };
+
+            await addDoc(collection(db, "updatedSchedule"), reservationData);
         }
 
-        const data = docSnapshot.data();
+        // Dispatch the event after the reservation is confirmed
+        const event = new Event('reservationConfirmed');
+        document.dispatchEvent(event);
 
-        // Update the scheduleData, but only for the specific room and time slot
-        const updatedSchedule = data.scheduleData.map(entry => {
-            // Only modify the entry if the room name matches
-            if (entry.rooms.some(room => room.name.trim().toLowerCase() === roomName.trim().toLowerCase())) {
-                entry.rooms = entry.rooms.map(room => {
-                    if (room.name.trim().toLowerCase() === roomName.trim().toLowerCase()) {
-                        // Only update the selected room's schedule
-                        Object.keys(room.schedule).forEach(day => {
-                            room.schedule[day] = room.schedule[day].map(slot => {
-                                if (slot.time === time && slot.status === "Available") {
-                                    return { 
-                                        ...slot, 
-                                        status: "Occupied", // Change status to "Occupied"
-                                        reason: reservationReason, // Optionally store the reason
-                                        reservedBy: user.email // Store the email of the logged-in user
-                                    };
-                                }
-                                return slot;
-                            });
-                        });
-                    }
-                    return room;
-                });
-            }
-            return entry;
-        });
-
-        // Update the Firestore document with the new schedule
-        await updateDoc(docRef, { scheduleData: updatedSchedule });
-
-        alert("Reservation confirmed!");
+        alert("Reservations confirmed!");
         closeTimeModal();
 
-        // Refresh the page to reflect the updated status
-        location.reload(); // Refresh the page to show the updated status
+        // Dynamically update the schedule table without reloading the page
+        selectedSlots.forEach(slot => {
+            const rows = document.querySelectorAll('.schedule-table tbody tr');
+            rows.forEach(row => {
+                const timeCell = row.querySelector('td:first-child');
+                if (timeCell.textContent.trim() === slot.time) {
+                    const statusCell = row.querySelector('td:nth-child(2)');
+                    statusCell.innerHTML = `
+                        Occupied<br><small>Reserved By: ${user.email}</small>
+                    `;
+                    const checkbox = statusCell.querySelector('.select-slot');
+                    if (checkbox) checkbox.remove();
+                }
+            });
+        });
     } catch (error) {
-        console.error("Error updating reservation:", error);
-        alert("Error reserving the room. Please try again.");
+        console.error("Error confirming reservations:", error);
+        alert("Error reserving the selected times. Please try again.");
+    } finally {
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        if (loadingSpinner) {
+            loadingSpinner.style.display = 'none';
+        }
     }
 }
 
-// Event listener for page load
 document.addEventListener('DOMContentLoaded', () => {
     const roomName = getRoomFromURL();
-    console.log("Fetched room name:", roomName);  // Debugging roomName
+    console.log("Fetched room name:", roomName);
 
     if (!roomName) {
         console.error("Room not found in URL! Please select a valid room.");
@@ -232,16 +356,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const dayDropdown = document.querySelector('#dayDropdown');
-    const selectedDay = dayDropdown.value || "monday"; // Default to "monday" if no day is selected
+    const selectedDay = dayDropdown.value || "";
 
-    fetchRoomData(roomName, selectedDay);
+    if (selectedDay) {
+        fetchRoomData(roomName, selectedDay);
+    }
 
     dayDropdown.addEventListener('change', () => {
         const selectedDay = dayDropdown.value;
         if (selectedDay) {
             fetchRoomData(roomName, selectedDay);
+        } else {
+            document.querySelector('.schedule-table').innerHTML = `<p>Please select a day to view the schedule.</p>`;
         }
     });
 });
 
-document.getElementById('confirmReservationButton').addEventListener('click', confirmReservation);
+const confirmButton = document.getElementById('confirmReservationButton');
+if (confirmButton) {
+    confirmButton.addEventListener('click', confirmReservation);
+}
+
+/**
+ * Function to toggle the profile menu visibility.
+ */
+function toggleProfileMenu() {
+    const profileMenu = document.getElementById('profileMenu');
+    
+    // Toggle the "show" class to display or hide the menu
+    profileMenu.classList.toggle('show');
+}
+
+/**
+ * Function to close the profile menu if clicked anywhere outside.
+ */
+window.onclick = function(event) {
+    const profileMenu = document.getElementById('profileMenu');
+    const profileIcon = document.querySelector('.profile-link');
+    
+    if (profileIcon && !profileIcon.contains(event.target)) {
+        profileMenu.classList.remove('show');
+    }
+};
+
+/**
+ * Function to toggle the side panel visibility.
+ */
+function toggleSidePanel() {
+    const sidePanel = document.getElementById('sidePanel');
+    if (sidePanel) {
+        sidePanel.classList.toggle('active');
+    }
+}
+
+/**
+ * Function to scroll the window to the top smoothly.
+ */
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
