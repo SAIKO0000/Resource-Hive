@@ -1,0 +1,30 @@
+name: "Daily Schedule Reset"
+
+on:
+  schedule:
+    - cron: "0 16 * * *"  # Runs daily at midnight PHT (16:00 UTC)
+  workflow_dispatch:    # Allows manual triggering
+
+jobs:
+  reset-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install firebase-admin
+
+      - name: Decode Service Account Key
+        env:
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        run: echo "$SERVICE_ACCOUNT_KEY" > scripts/serviceAccountKey.json
+
+      - name: Run Reset Script
+        run: node scripts/resetSchedule.js
