@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Hive</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/myreservation.css">
     
     <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
@@ -102,51 +105,7 @@
 </head>
 
 <body>
-    
-    <header>
-        <div class="header-logo">
-            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
-            <p>ResourceHive</p>
-        </div>
-    
-        <div class="menu-toggle" onclick="toggleSidePanel()">
-            <span>&#9776;</span> <!-- This is the hamburger icon -->
-        </div>
-        
-    
-        <div class="header-links">
-            <a href="resourcehive.html" onclick="scrollToTop()">HOME</a>
-            <a href="about.html">ABOUT</a>
-            <a href="myreservation.html">HISTORY</a>
-    
-            <!-- Profile Icon with Dropdown -->
-            <div class="profile-link" onclick="toggleProfileMenu()">
-                <img src="img/profile.jpg" alt="Profile Icon" class="profile-icon">
-            </div>
-    
-           <!-- Profile Dropdown Menu -->
-           <div id="profileMenu" class="profile-menu">
-            <a href="profile.html">VIEW PROFILE</a>
-            <a href="analytics.html">ANALYTICS</a>
-            <a href="javascript:void(0)" id="logout-btn">LOGOUT</a>
-        </div>
-    </div>
-</header>
-    
-    <!-- Side Panel (Mobile/Tablet Only) -->
-    <div id="sidePanel" class="side-panel">
-        <div class="side-panel-links">
-            <a href="resourcehive.html">HOME</a>
-            <a href="about.html">ABOUT</a>
-            <a href="myreservation.html">HISTORY</a>
-            <a href="profile.html">VIEW PROFILE</a>
-                <a href="analytics.html">ANALYTICS</a>
-              <a href="#" id="logout-btn">LOGOUT</a>
-            <!-- Add other links here as necessary -->
-        </div>
-    </div>
-
-    
+    <div id="header-placeholder" class="container-fluid"></div>
  
     <section class="my-reservations">
 
@@ -197,5 +156,8 @@
             <p>&copy; 2024 CvSU - Department of Information Technology</p>
         </div>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/components.js"></script>
 </body>
 </html>
