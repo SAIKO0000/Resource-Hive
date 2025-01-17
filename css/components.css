@@ -1,8 +1,10 @@
 /* Header/Navbar Styles */
 .navbar {
-    background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+    background: linear-gradient(135deg, rgba(0, 102, 102, 0.8) 0%, rgba(0, 128, 128, 0.8) 50%, rgba(64, 224, 208, 0.8) 100%);
     padding: 0.5rem 1rem;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .navbar-brand {
@@ -12,6 +14,7 @@
     display: flex;
     align-items: center;
     gap: 0rem;
+
 }
 
 .navbar-brand:hover {
@@ -224,7 +227,7 @@
     .mobile-profile-links {
         margin-top: 1rem;
         padding-top: 0.5rem;
-        border-top: 1px solid rgb(255, 255, 255);
+        border-top: 1px solid rgb(255, 255, 255, 0.6);
     }
 
     .mobile-profile-links .nav-link {
@@ -238,7 +241,7 @@
     }
 
     .navbar-collapse {
-        background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+        background: linear-gradient(135deg, rgba(0, 102, 102, 0.9) 0%, rgba(0, 128, 128, 0.9) 50%, rgba(64, 224, 208, 0.9) 100%);
         padding: 1rem;
         border-radius: 0 0 10px 10px;
         position: fixed;
@@ -246,6 +249,9 @@
         left: 0;
         right: 0;
         z-index: 1020;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 }
 
