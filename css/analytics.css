@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        135deg,
+        #006666 0%,
+        #008080 50%,
+        #40E0D0 100%
+    );
+    color: white;
+}
+
+header {
+    background-color: #008080;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 2rem;
+}
+
+.filter-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.filter-container label {
+    font-weight: bold;
+    margin-right: 1rem;
+    color: #ffffff;
+}
+
+.filter-container select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.chart-container {
+    margin-bottom: 2rem;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+.stats-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.stats-container h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem); /* Adjusts font size based on screen width */
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.stats-container ul {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next row if necessary */
+    justify-content: center; /* Centers the items horizontally */
+    list-style-type: none;
+    padding: 0;
+    gap: 1rem; /* Adds space between items */
+}
+
+.stats-container ul li {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem; /* Padding for better readability */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem); /* Dynamically adjust font size */
+    word-wrap: break-word; /* Break long words if necessary */
+    max-width: 300px; /* Limit maximum width of each list item */
+    text-align: center;
+}
+
+.chart-container {
+    margin-bottom: 2rem;
+    width: 90%; /* Adjust the width */
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin-left: auto;
+    margin-right: auto; /* Center alignment */
+    height: 500px; /* Increased height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+canvas {
+    width: 100%; /* Make the canvas occupy the full container width */
+    height: 100%; /* Adjust height proportionally */
+    border-radius: 10px;
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive</title>
+    <link rel="stylesheet" href="css/room.css">
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+
+    <!-- Firebase Firestore -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="https://apis.google.com/js/api.js" onload="onGapiLoad()"></script>
+
+    <!-- Loading Spinner -->
+
+</div>
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+        authDomain: "visual-visionaries.firebaseapp.com",
+        projectId: "visual-visionaries",
+        storageBucket: "visual-visionaries.firebasestorage.app",
+        messagingSenderId: "24641645399",
+        appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+        measurementId: "G-TQRQKBESP5"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    console.log('Firebase App Initialized:', app);
+    console.log('Auth Instance:', auth);
+    console.log('Current User on Page Load:', auth.currentUser);
+  
+    // Monitor authentication state
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            console.log('User is signed in:', user);
+        } else {
+            console.log('No user is signed in.');
+        }
+    });
+
+    // Store the login state for session (temporary) or persistence across sessions
+    sessionStorage.setItem('isLoggedIn', 'true'); // Store the login state
+    const isLoggedInSession = sessionStorage.getItem('isLoggedIn');
+    localStorage.setItem('isLoggedIn', 'true');  // Store the login state
+    const isLoggedInPersistent = localStorage.getItem('isLoggedIn');
+
+    // Check the login state when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check for login state from sessionStorage or localStorage
+        if (!sessionStorage.getItem('isLoggedIn') && !localStorage.getItem('isLoggedIn')) {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        }
+
+        // Logout button logic
+        const logoutBtns = document.querySelectorAll('#logout-btn');
+        logoutBtns.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                try {
+                    const currentUser = auth.currentUser;
+                    if (!currentUser) {
+                        console.warn('No user is currently logged in.');
+                        alert('No user is logged in. Please log in first.');
+                        return; // Exit early if no user is logged in
+                    }
+
+                    const tokenResult = await currentUser.getIdTokenResult();
+                    console.log('Token Result:', tokenResult);
+
+                    // Sign out the user
+                    await signOut(auth);
+                    console.log('User successfully logged out.');
+
+                    // Clear session and local storage
+                    localStorage.removeItem('isLoggedIn');
+                    sessionStorage.clear();
+
+                    // Redirect to login page
+                    window.location.replace('login.html');
+
+                    // Prevent going back to the previous page
+                    history.pushState(null, null, location.href);
+                    history.forward();
+                } catch (error) {
+                    console.error('Error during logout:', error);
+                    alert('An error occurred while logging out.');
+                }
+            });
+        });
+    });
+</script>
+
+</head>
+<body>
+    <header>
+        <!-- Logo Section -->
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>ResourceHive</p>
+        </div>
+    
+     
+        <!-- Header Links (Visible only in Full View) -->
+        <div class="header-links">
+            <a href="resourcehive.html" onclick="scrollToTop()">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="myreservation.html">HISTORY</a>
+        
+            <!-- Profile Dropdown Section -->
+            <div class="profile-link" onclick="toggleProfileMenu()">
+                <img src="img/profile.jpg" alt="Profile Icon" class="profile-icon">
+            </div>
+       <!-- Profile Dropdown Menu -->
+       <div id="profileMenu" class="profile-menu">
+        <a href="profile.html">VIEW PROFILE</a>
+        <a href="analytics.html">ANALYTICS</a>
+        <a href="javascript:void(0)" id="logout-btn">LOGOUT</a>
+    </div>
+        </div>
+    </header>
+
+
+    <div class="menu-toggle" onclick="toggleSidePanel()">
+        <span>&#9776;</span> <!-- This is the hamburger icon -->
+    </div>
+        <!-- Side Panel (Mobile/Tablet Only) -->
+        <div id="sidePanel" class="side-panel">
+            <div class="side-panel-links">
+                <a href="resourcehive.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="myreservation.html">HISTORY</a>
+                <a href="profile.html">VIEW PROFILE</a>
+                    <a href="analytics.html">ANALYTICS</a>
+                <a href="#" id="logout-btn">LOGOUT</a>
+                <!-- Add other links here as necessary -->
+            </div>
+        </div>
+
+    
+    <section class="reservation-container">
+        <div class="room-info">
+            <!-- Room info will be dynamically added here -->
+        </div>
+
+        <div class="day-selector">
+            <label for="dayDropdown">Day:</label>
+            <select id="dayDropdown">
+                <option value="">Select a Day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
+        </div>
+        <div id="scheduleTable" class="schedule-table">
+            <h3>Schedule</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Check-In / Check-Out</th>
+                        <th>Select</th>
+                        <th>Actions</th> <!-- New column for buttons -->
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    <!-- Schedule rows will be populated dynamically here -->
+                </tbody>
+            </table>
+        </div>
+
+        
+
+        <!-- Modal for reservation -->
+        <div id="timeModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModalButton" onclick="closeTimeModal()">X</span>
+                <h3 id="selectedRoomName"></h3>
+                <p id="reservationTime"></p>
+                <textarea id="reservationReason" placeholder="Enter reason for reservation"></textarea>
+                <button id="confirmReservationButton">Confirm Reservation</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Ensure closeTimeModal is defined and accessible
+        function closeTimeModal() {
+            const modal = document.getElementById('timeModal');
+            modal.style.display = 'none';
+            document.getElementById('reservationReason').value = ''; // Reset the reason field
+        }
+    
+        // Add event listener for the close button
+        const closeModalButton = document.getElementById('closeModalButton');
+        closeModalButton.addEventListener('click', closeTimeModal);
+    </script>
+
+
+    
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-info">
+                <img src="img/beelogo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                <h2 class="footer-title">Resource Hive</h2>
+            <address class="contact-info">
+                <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                <p><img src="img/email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                <p><img src="img/map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+            </address>
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="about.html">About Resource Hive</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="how_to_book.html">How to Book</a></li>
+                <li><a href="help_center.html">Help Center</a></li>
+                <li><a href="about_us.html">Visual Visionaries</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>Follow us on</h3>
+            <ul class="social-links">
+                <li><a href="https://www.facebook.com/profile.php?id=61570949275956&is_tour_dismissed" aria-label="Facebook"><img src="img/fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                <li><a href="ig-url" aria-label="Instagram"><img src="img/ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                <li><a href="yt-url" aria-label="YouTube"><img src="img/yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+            </ul>
+        
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 CvSU - Department of Information Technology</p>
+    </div>
+</footer>
+    <script type="module" src="js/room.js" defer></script> 
+    <script  src="js/resourcehive.js">defer</script>
+
+</body>
+</html>

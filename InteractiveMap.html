@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIT Map</title>
+    <link rel="stylesheet" href="css/DIT_Map.css">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+      
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+            authDomain: "visual-visionaries.firebaseapp.com",
+            projectId: "visual-visionaries",
+            storageBucket: "visual-visionaries.firebasestorage.app",
+            messagingSenderId: "24641645399",
+            appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+            measurementId: "G-TQRQKBESP5"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+      
+        console.log('Firebase App Initialized:', app);
+        console.log('Auth Instance:', auth);
+        console.log('Current User on Page Load:', auth.currentUser);
+      
+        // Monitor authentication state
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User is signed in:', user);
+            } else {
+                console.log('No user is signed in.');
+            }
+        });
+    
+        // Store the login state for session (temporary) or persistence across sessions
+        sessionStorage.setItem('isLoggedIn', 'true'); // Store the login state
+        const isLoggedInSession = sessionStorage.getItem('isLoggedIn');
+        localStorage.setItem('isLoggedIn', 'true');  // Store the login state
+        const isLoggedInPersistent = localStorage.getItem('isLoggedIn');
+    
+        // Check the login state when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for login state from sessionStorage or localStorage
+            if (!sessionStorage.getItem('isLoggedIn') && !localStorage.getItem('isLoggedIn')) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+            }
+    
+            // Logout button logic
+            const logoutBtns = document.querySelectorAll('#logout-btn');
+            logoutBtns.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    try {
+                        const currentUser = auth.currentUser;
+                        if (!currentUser) {
+                            console.warn('No user is currently logged in.');
+                            alert('No user is logged in. Please log in first.');
+                            return; // Exit early if no user is logged in
+                        }
+    
+                        const tokenResult = await currentUser.getIdTokenResult();
+                        console.log('Token Result:', tokenResult);
+    
+                        // Sign out the user
+                        await signOut(auth);
+                        console.log('User successfully logged out.');
+    
+                        // Clear session and local storage
+                        localStorage.removeItem('isLoggedIn');
+                        sessionStorage.clear();
+    
+                        // Redirect to login page
+                        window.location.replace('login.html');
+    
+                        // Prevent going back to the previous page
+                        history.pushState(null, null, location.href);
+                        history.forward();
+                    } catch (error) {
+                        console.error('Error during logout:', error);
+                        alert('An error occurred while logging out.');
+                    }
+                });
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+       
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>ResourceHive</p>
+        </div>
+    
+        <div class="header-links">
+            <a href="resourcehive.html" onclick="scrollToTop()">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="myreservation.html">HISTORY</a>
+    
+            <!-- Profile Icon with Dropdown -->
+            <div class="profile-link" onclick="toggleProfileMenu()">
+                <img src="img/profile.jpg" alt="Profile Icon" class="profile-icon">
+            </div>
+    
+           <!-- Profile Dropdown Menu -->
+           <div id="profileMenu" class="profile-menu">
+            <a href="profile.html">VIEW PROFILE</a>
+            <a href="analytics.html">ANALYTICS</a>
+            <a href="javascript:void(0)" id="logout-btn">LOGOUT</a>
+        </div>
+    </div>
+    </header>
+    <div class="menu-toggle" onclick="toggleSidePanel()">
+        <span>&#9776;</span> <!-- This is the hamburger icon -->
+    </div>
+        <!-- Side Panel (Mobile/Tablet Only) -->
+        <div id="sidePanel" class="side-panel">
+            <div class="side-panel-links">
+                <a href="resourcehive.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="myreservation.html">HISTORY</a>
+                <a href="profile.html">VIEW PROFILE</a>
+                    <a href="analytics.html">ANALYTICS</a>
+                <a href="#" id="logout-btn">LOGOUT</a>
+                <!-- Add other links here as necessary -->
+            </div>
+        </div>
+        
+    
+
+
+
+    <div class="container-bg">
+        <section class="container">
+
+            <h1>Choose Building Level</h1>
+            <div id="buttons">
+                <select id="Level">
+                    <option value="">Select Level</option>
+                    <option value="1st-floor">1ST-FLOOR</option>
+                    <option value="2nd-floor">2ND-FLOOR</option>
+                    <option value="3rd-floor">3RD-FLOOR</option>
+                    <option value="4th-floor">4TH-FLOOR</option>
+                    <option value="5th-floor">5TH-FLOOR</option>
+                </select>
+            </div>
+        </section>
+    </div>
+    
+
+        <!-- Pop-up windows for each floor -->
+        <div class="window" id="window-1st">
+            <div class="window-inner">
+                <button class="F1Btn" onclick="goToRoomSchedule('OS ROOM')">OS ROOM</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 101')">CCL 101</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 102')">CCL 102</button>
+            </div>
+            <button class="close-btn" id="close-btn-1st">X</button>
+        </div>
+
+        <div class="window" id="window-2nd">
+            <div class="window-inner">
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 201')">CCL 201</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 202')">CCL 202</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 203')">CCL 203</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 204')">CCL 204</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 205')">CCL 205</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 201')">ITC 201</button>
+            </div>
+            <button class="close-btn" id="close-btn-2nd">X</button>
+        </div>
+
+        <div class="window" id="window-3rd">
+            <div class="window-inner">
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 301')">CCL 301</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 302')">CCL 302</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 303')">CCL 303</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 304')">CCL 304</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 305')">CCL 305</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 306')">CCL 306</button>
+            </div>
+            <button class="close-btn" id="close-btn-3rd">X</button>
+        </div>
+
+        <div class="window" id="window-4th">
+            <div class="window-inner">
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 401')">ITC 401</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 402')">ITC 402</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 403')">ITC 403</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 401')">CCL 401</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('CCL 402')">CCL 402</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 404')">ITC 404</button>
+                <button class="F1Btn" onclick="goToRoomSchedule('ITC 408')">ITC 408</button>
+            </div>
+            <button class="close-btn" id="close-btn-4th">X</button>
+        </div>
+    </div>
+
+    <div class="window" id="window-5th">
+        <div class="window-inner">
+            <button class="F1Btn" onclick="goToRoomSchedule('ITC 501')">ITC 501</button>
+            <button class="F1Btn" onclick="goToRoomSchedule('ITC 502')">ITC 502</button>
+            <button class="F1Btn" onclick="goToRoomSchedule('ITC 503')">ITC 503</button>
+            <button class="F1Btn" onclick="goToRoomSchedule('ITC 504')">ITC 504</button>
+            <button class="F1Btn" onclick="goToRoomSchedule('ITC 505')">ITC 505</button>
+        </div>
+        <button class="close-btn" id="close-btn-5th">X</button>
+    </div>
+</div>
+    
+    <script src="js/DIT_Map.js"></script>
+
+ 
+</body>
+</html>

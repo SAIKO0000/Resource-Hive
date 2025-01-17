@@ -1,0 +1,2349 @@
+{
+  "scheduleData": [
+    {
+      "day": "Monday",
+      "rooms": [
+        {
+          "floor": "1F",
+          "name": "OS ROOM",
+          "type": "Classroom",
+          "features": ["TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+            { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+            { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Occupied" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        
+        {
+          "floor": "1F",
+          "name": "CCL 101",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+            { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+            { "time": "2:00 PM - 4:00 PM", "status": "Available" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "1F",
+          "name": "CCL 102",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+
+
+        {
+          "floor": "2F",
+          "name": "ITC 201",
+          "type": "Classroom",
+          "features": [""],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 11:00 AM", "status": "Occupied" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 2:00 PM", "status": "Occupied" },
+            { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 201",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Available" },
+            { "time": "10:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+            { "time": "2:00 PM - 4:00 PM", "status": "Available" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 202",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 203",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 204",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 205",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "3F",
+          "name": "CCL 301",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "3F",
+          "name": "CCL 302",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "3F",
+          "name": "CCL 303",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+            { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+
+
+              {
+            "floor": "3F",
+            "name": "CCL 304",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 305",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 306",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+
+              {
+                "floor": "4F",
+                "name": "ITC 401",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                  { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+                  { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                  { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                  { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                  { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "CCL 401",
+                "type": "Laboratory",
+                "features": ["AC", "TV"],
+                "timeslots": [
+                  { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                  { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                  { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                  { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                  { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+                  { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "ITC 402",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                  { "time": "9:00 AM - 10:00 AM", "status": "Occupied" },
+                  { "time": "10:00 AM - 11:00 AM", "status": "Available" },
+                  { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                  { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                  { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                  { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "CCL 402",
+                "type": "Laboratory",
+                "features": ["AC", "TV"],
+                "timeslots": [
+                  { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+                  { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+                  { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+                  { "time": "4:00 PM - 5:00 PM", "status": "Available" },
+                  { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                  { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "ITC 403",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                  { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                  { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                  { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+                  { "time": "2:00 PM - 3:00 PM", "status": "Occupied" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                  { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "ITC 404",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 8:00 AM", "status": "Occupied" },
+                  { "time": "8:00 AM - 10:00 AM", "status": "Occupied" },
+                  { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+                  { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+                  { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+                  { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+                  { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "4F",
+                "name": "ITC 408",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+                  { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+                  { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                  { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+              {
+                "floor": "5F",
+                "name": "ITC 501",
+                "type": "Classroom",
+                "features": [""],
+                "timeslots": [
+                  { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                  { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                  { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                  { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                  { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                  { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                  { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+                ]
+              },
+
+          
+            {
+              "floor": "5F",
+              "name": "ITC 502",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 503",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 504",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 505",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            }
+          ]
+        },
+
+    
+    {
+      "day": "Tuesday",
+      "rooms": [
+        {
+          "floor": "1F",
+          "name": "OS ROOM",
+          "type": "Classroom",
+          "features": ["TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 8:00 AM", "status": "Occupied" },
+            { "time": "8:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+            { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+            { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "1F",
+          "name": "CCL 101",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "1F",
+          "name": "CCL 102",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "ITC 201",
+          "type": "Classroom",
+          "features": [""],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 11:00 AM", "status": "Occupied" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+            { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 201",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 202",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 203",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 204",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+            { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+            { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+            { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        {
+          "floor": "2F",
+          "name": "CCL 205",
+          "type": "Laboratory",
+          "features": ["AC", "TV"],
+          "timeslots": [
+            { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+            { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+            { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+            { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+            { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+            { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+          ]
+        },
+        
+          {
+            "floor": "3F",
+            "name": "CCL 301",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 302",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 303",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 304",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 305",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Occupied" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 306",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 401",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "CCL 401",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 402",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "CCL 402",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 403",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 404",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 408",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+      
+        
+          {
+            "floor": "5F",
+            "name": "ITC 501",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Occupied" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 502",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Occupied" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 503",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 504",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 505",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          }
+        ]
+      },
+     
+    
+
+
+
+      {
+        "day": "Wednesday",
+        "rooms": [
+          {
+            "floor": "1F",
+            "name": "OS ROOM",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 101",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 102",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "ITC 201",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Occupied" },
+              { "time": "2:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 201",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 202",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 203",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 204",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 205",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 301",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 302",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 303",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 304",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 305",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Occupied" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+
+
+                  {
+            "floor": "3F",
+            "name": "CCL 306",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 401",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "CCL 401",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 402",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "CCL 402",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 403",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 404",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 408",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 501",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 2:00 PM", "status": "Available" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 502",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 503",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 504",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 505",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          }
+        ]
+      },
+
+
+
+      {
+        "day": "Thursday",
+        "rooms": [
+          {
+            "floor": "1F",
+            "name": "OS ROOM",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 8:00 AM", "status": "Available" },
+              { "time": "8:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 101",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 102",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "ITC 201",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 201",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 202",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 203",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 204",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 205",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 301",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 302",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 303",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 304",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 305",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+              { "time": "12:00 PM - 2:00 PM", "status": "Occupied" },
+              { "time": "2:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+              { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 306",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 401",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "CCL 401",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 402",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 4:00 PM", "status": "Available" },
+              { "time": "4:00 PM - 6:00 PM", "status": "Available" }
+            ]
+          },
+    
+      
+          {
+            "floor": "4F",
+            "name": "CCL 402",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 403",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 404",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "4F",
+            "name": "ITC 408",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 12:00 PM", "status": "Occupied" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 501",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 502",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 503",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 12:00 PM", "status": "Available" },
+              { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Occupied" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 504",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "5F",
+            "name": "ITC 505",
+            "type": "Classroom",
+            "features": [],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          }
+        ]
+      },
+          
+
+
+      
+
+
+     
+      {
+        "day": "Friday",
+        "rooms": [
+          {
+            "floor": "1F",
+            "name": "OS ROOM",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 101",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "1F",
+            "name": "CCL 102",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "ITC 201",
+            "type": "Classroom",
+            "features": [""],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Occupied" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 201",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 202",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 203",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 204",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+              { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+              { "time": "4:00 PM - 7:00 PM", "status": "Occupied" },
+              { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "2F",
+            "name": "CCL 205",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 301",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 302",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 303",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 304",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+          {
+            "floor": "3F",
+            "name": "CCL 305",
+            "type": "Laboratory",
+            "features": ["AC", "TV"],
+            "timeslots": [
+              { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+              { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+              { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+              { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+              { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+              { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+            ]
+          },
+
+      
+            {
+              "floor": "3F",
+              "name": "CCL 306",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "ITC 401",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 10:00 AM", "status": "Occupied" },
+                { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 4:00 PM", "status": "Occupied" },
+                { "time": "4:00 PM - 6:00 PM", "status": "Available" },
+                { "time": "6:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "CCL 401",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "ITC 402",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "CCL 402",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "ITC 403",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "ITC 404",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 10:00 AM", "status": "Available" },
+                { "time": "10:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "4F",
+              "name": "ITC 408",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 12:00 PM", "status": "Occupied" },
+                { "time": "12:00 PM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 501",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 502",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Occupied" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Occupied" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 503",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Occupied" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Occupied" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 504",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Occupied" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Occupied" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "5F",
+              "name": "ITC 505",
+              "type": "Classroom",
+              "features": [""],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            }
+          ]
+        },
+          
+
+        {
+          "day": "Saturday",
+          "rooms": [
+            {
+              "floor": "1F",
+              "name": "OS ROOM",
+              "type": "Classroom",
+              "features": [],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "1F",
+              "name": "CCL 101",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "1F",
+              "name": "CCL 102",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "ITC 201",
+              "type": "Classroom",
+              "features": [],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "CCL 201",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "CCL 202",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 10:00 AM", "status": "Available" },
+                { "time": "10:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 4:00 PM", "status": "Available" },
+                { "time": "4:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "CCL 203",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 10:00 AM", "status": "Available" },
+                { "time": "10:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 4:00 PM", "status": "Available" },
+                { "time": "4:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "CCL 204",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 10:00 AM", "status": "Available" },
+                { "time": "10:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 4:00 PM", "status": "Available" },
+                { "time": "4:00 PM - 7:00 PM", "status": "Available" },
+                { "time": "7:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "2F",
+              "name": "CCL 205",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "3F",
+              "name": "CCL 301",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "3F",
+              "name": "CCL 302",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "3F",
+              "name": "CCL 303",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+            {
+              "floor": "3F",
+              "name": "CCL 304",
+              "type": "Laboratory",
+              "features": ["AC", "TV"],
+              "timeslots": [
+                { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+              ]
+            },
+        
+                {
+                  "floor": "3F",
+                  "name": "CCL 305",
+                  "type": "Laboratory",
+                  "features": ["AC", "TV"],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "3F",
+                  "name": "CCL 306",
+                  "type": "Laboratory",
+                  "features": ["AC", "TV"],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "ITC 401",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "CCL 401",
+                  "type": "Laboratory",
+                  "features": ["AC", "TV"],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "ITC 402",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "CCL 402",
+                  "type": "Laboratory",
+                  "features": ["AC", "TV"],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "ITC 403",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "ITC 404",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "4F",
+                  "name": "ITC 408",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "5F",
+                  "name": "ITC 501",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "5F",
+                  "name": "ITC 502",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "5F",
+                  "name": "ITC 503",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "5F",
+                  "name": "ITC 504",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                },
+                {
+                  "floor": "5F",
+                  "name": "ITC 505",
+                  "type": "Classroom",
+                  "features": [],
+                  "timeslots": [
+                    { "time": "7:00 AM - 9:00 AM", "status": "Available" },
+                    { "time": "9:00 AM - 11:00 AM", "status": "Available" },
+                    { "time": "11:00 AM - 1:00 PM", "status": "Available" },
+                    { "time": "1:00 PM - 3:00 PM", "status": "Available" },
+                    { "time": "3:00 PM - 5:00 PM", "status": "Available" },
+                    { "time": "5:00 PM - 8:00 PM", "status": "Available" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+            

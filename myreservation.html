@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive</title>
+    <link rel="stylesheet" href="css/myreservation.css">
+    
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    
+    <script type="module" src="js/myreservation.js"></script>
+    <script module="firebase/firebase.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+      
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+            authDomain: "visual-visionaries.firebaseapp.com",
+            projectId: "visual-visionaries",
+            storageBucket: "visual-visionaries.firebasestorage.app",
+            messagingSenderId: "24641645399",
+            appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+            measurementId: "G-TQRQKBESP5"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+      
+        console.log('Firebase App Initialized:', app);
+        console.log('Auth Instance:', auth);
+        console.log('Current User on Page Load:', auth.currentUser);
+      
+        // Monitor authentication state
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User is signed in:', user);
+            } else {
+                console.log('No user is signed in.');
+            }
+        });
+    
+        // Store the login state for session (temporary) or persistence across sessions
+        sessionStorage.setItem('isLoggedIn', 'true'); // Store the login state
+        const isLoggedInSession = sessionStorage.getItem('isLoggedIn');
+        localStorage.setItem('isLoggedIn', 'true');  // Store the login state
+        const isLoggedInPersistent = localStorage.getItem('isLoggedIn');
+    
+        // Check the login state when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for login state from sessionStorage or localStorage
+            if (!sessionStorage.getItem('isLoggedIn') && !localStorage.getItem('isLoggedIn')) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+            }
+    
+            // Logout button logic
+            const logoutBtns = document.querySelectorAll('#logout-btn');
+            logoutBtns.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    try {
+                        const currentUser = auth.currentUser;
+                        if (!currentUser) {
+                            console.warn('No user is currently logged in.');
+                            alert('No user is logged in. Please log in first.');
+                            return; // Exit early if no user is logged in
+                        }
+    
+                        const tokenResult = await currentUser.getIdTokenResult();
+                        console.log('Token Result:', tokenResult);
+    
+                        // Sign out the user
+                        await signOut(auth);
+                        console.log('User successfully logged out.');
+    
+                        // Clear session and local storage
+                        localStorage.removeItem('isLoggedIn');
+                        sessionStorage.clear();
+    
+                        // Redirect to login page
+                        window.location.replace('login.html');
+    
+                        // Prevent going back to the previous page
+                        history.pushState(null, null, location.href);
+                        history.forward();
+                    } catch (error) {
+                        console.error('Error during logout:', error);
+                        alert('An error occurred while logging out.');
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+</head>
+
+<body>
+    
+    <header>
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>ResourceHive</p>
+        </div>
+    
+        <div class="menu-toggle" onclick="toggleSidePanel()">
+            <span>&#9776;</span> <!-- This is the hamburger icon -->
+        </div>
+        
+    
+        <div class="header-links">
+            <a href="resourcehive.html" onclick="scrollToTop()">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="myreservation.html">HISTORY</a>
+    
+            <!-- Profile Icon with Dropdown -->
+            <div class="profile-link" onclick="toggleProfileMenu()">
+                <img src="img/profile.jpg" alt="Profile Icon" class="profile-icon">
+            </div>
+    
+           <!-- Profile Dropdown Menu -->
+           <div id="profileMenu" class="profile-menu">
+            <a href="profile.html">VIEW PROFILE</a>
+            <a href="analytics.html">ANALYTICS</a>
+            <a href="javascript:void(0)" id="logout-btn">LOGOUT</a>
+        </div>
+    </div>
+</header>
+    
+    <!-- Side Panel (Mobile/Tablet Only) -->
+    <div id="sidePanel" class="side-panel">
+        <div class="side-panel-links">
+            <a href="resourcehive.html">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="myreservation.html">HISTORY</a>
+            <a href="profile.html">VIEW PROFILE</a>
+                <a href="analytics.html">ANALYTICS</a>
+              <a href="#" id="logout-btn">LOGOUT</a>
+            <!-- Add other links here as necessary -->
+        </div>
+    </div>
+
+    
+ 
+    <section class="my-reservations">
+
+<h2>Reservation History</h2>
+        <table id="reservationHistory">
+            <thead>
+                <tr>
+                    <th>Room Name</th>
+                    <th>Day</th>
+                    <th>Reservation Time</th>
+                    <th>Reason</th>
+                    <th>Date and Time</th>
+                    <th>Action</th>
+     
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Reservation history rows will be inserted here -->
+            </tbody>
+        </table>
+        
+        
+        
+    </thead>
+    <tbody id="reservationTable">
+       <!--dito yung dyanmic table-->
+    </tbody>
+</table>
+
+
+       
+    </tbody>
+</table>
+<form id="reservationForm">
+    <!-- form fields here -->
+</form>
+
+
+  
+
+    <div id="error" class="error-message" style="display: none;">
+        Something went wrong. Please try again later.
+    </div>
+
+  
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+</body>
+</html>

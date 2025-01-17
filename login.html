@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resource Hive Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <main class="resource-hive-container">
+        <section class="hero-section">
+            <img src="img/dit.jpg" alt="Resource Hive background" class="hero-image" aria-hidden="true">
+            <div class="login-card">
+                <img src="img/beelogo.png" alt="Resource Hive logo" class="logo">
+                <h1 class="app-title">Resource Hive</h1>
+                <p class="app-description">Manage your resources efficiently and book rooms seamlessly.</p>
+                
+                <form id="login-form">
+                    <div class="input-wrapper">
+                        <label for="email-input" class="email-label">CvSU Email:</label>
+                        <input type="email" id="email-input" class="email-input" name="email" placeholder="name@cvsu.edu.ph" required aria-required="true">
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <label for="password-input" class="password-label">Password:</label>
+                        <input type="password" id="password-input" class="password-input" name="password" placeholder="Enter your password" required aria-required="true">
+                    </div>
+                    
+                    <div class="button-container">
+                        <button type="submit" class="login-button">Login</button>
+                        <button type="button" id="google-login-btn">
+                            <img src="img/google.png" alt="Google logo" class="google-logo">
+                            Login with Google
+                        </button>
+                    </div>
+                </form>
+
+                <div id="login-message" class="login-message"></div>
+                <p class="sign-up-text">
+                    Don't have an account? <a href="signup.html" class="sign-up-link">Sign up</a>
+                </p>
+                <p class="forgot-password-text">
+                    <a href="javascript:void(0)" id="forgot-password-link">Forgot Password?</a>
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-department">2024 CvSU - Department of Information Technology | <a href="https://cvsu.edu.ph/" target="_blank" rel="noopener noreferrer">CvSU Website</a></p>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module" src="js/login.js" defer></script>
+</body>
+</html>

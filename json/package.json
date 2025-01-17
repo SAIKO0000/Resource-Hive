@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "firebase-admin": "^8.0.0",
+    "node-cron": "^3.0.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "json",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
+}

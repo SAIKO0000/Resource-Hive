@@ -1,0 +1,353 @@
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Main Container */
+.resource-hive-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+    opacity: 0.9;
+    box-shadow: 
+        0 8px 16px rgba(0.5, 0.5, 0.5, 0.5),
+        inset 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
+}
+
+/* Login Card */
+.login-card {
+    position: relative;
+    border-radius: 13px;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 50%;
+    max-width: 580px;
+    padding: 1.5rem; /* Reduced padding for tighter spacing */
+    text-align: center;
+    box-shadow: 
+        0 8px 16px rgba(0, 0, 0.5, 0.5),
+        inset 0 4px 8px rgba(0, 0, 0.5, 0.5);
+}
+
+/* Logo */
+.logo {
+    width: 90px;
+    margin-bottom: 1rem; /* Minimal bottom margin */
+}
+
+/* App Title */
+.app-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0.3rem 0; /* Minimal margin */
+}
+
+/* App Description */
+.app-description {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem; /* Reduced bottom margin */
+}
+
+/* Wrapper for form inputs */
+.input-wrapper {
+    width: 100%;
+    margin-bottom: 0.5rem; /* Reduced margin for inputs */
+}
+
+/* Form Labels */
+.email-label, .password-label {
+    font-size: 1.125rem;
+    font-weight: 500;
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem; /* Reduced space between label and input */
+    margin-left: 6.5rem; /* No margin */
+}
+
+/* Input Fields */
+.email-input, .password-input {
+    width: 100%;  /* Make sure they fill the container's width */
+    max-width: 400px;  /* Limit maximum width of the input fields */
+    padding: 0.8rem; /* Reduced padding for tighter input */
+    border-radius: 8px;
+    background-color: #ececec;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem; /* Reduced space between inputs */
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 4px 8px rgba(0, 0, 0, 0);
+}
+
+/* Wrapper for buttons */
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 8px; /* Reduced space between the buttons */
+    width: 100%; /* Ensure the container takes full width */
+    margin-top: 0.5rem; /* Reduced margin for better spacing */
+}
+
+/* Google Login Button and Login Button (same styling) */
+#google-login-btn, .login-button {
+    border-radius: 8px;
+    padding: 1rem 2rem; /* Increased padding for larger buttons */
+    border: none;
+    cursor: pointer;
+    margin: 0; /* No margin */
+    transition: background-color 0.3s ease;
+    width: auto; /* Let width be determined by the text inside */
+    text-align: center; /* Ensure text is centered */
+    font-size: 1.3rem; /* Larger font size for bigger buttons */
+}
+
+/* Google Login Button */
+#google-login-btn {
+    background-color: #db4437; /* Red color */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem; /* Larger font size */
+}
+
+/* Google Login Button hover */
+#google-login-btn:hover {
+    background-color: #c1351d; /* Darker red on hover */
+}
+
+/* Style the image inside the Google button */
+.google-logo {
+    width: 50px;  /* Larger logo size */
+    height: auto;
+    margin-right: 10px; /* Space between the logo and text */
+    vertical-align: middle; /* Align the logo with the text */
+}
+
+/* Login Button */
+.login-button {
+    background-color: #008c73; /* Green color */
+    color: white;
+}
+
+/* Login Button hover */
+.login-button:hover {
+    background-color: #007961; /* Darker green on hover */
+}
+
+/* Messages */
+.login-message {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: red;
+}
+
+.login-message.success {
+    color: green;
+}
+
+
+/* Footer Information */
+.footer-info {
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Sign Up Text and Link */
+.sign-up-text {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.sign-up-link {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.sign-up-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: #E0F7FA;
+    padding: 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    text-align: center;
+    box-shadow: 
+        0 8px 16px rgba(0.5, 0.5, 0.5, 0.5),
+        inset 0 4px 8px rgba(0.5, 0, 0, 0.5);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-department {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on your design */
+    max-width: 500px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#forgot-password-message {
+    margin-top: 10px;
+    font-weight: bold;
+}
+  
+  
+
+/* Global Styles - Mobile adjustments */
+@media (max-width: 480px) {
+    body, html {
+        font-size: 14px; /* Reduce font size for better readability */
+    }  
+
+    /* Hero Section */
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .hero-image {
+        opacity: 0.8; /* Slightly reduce background opacity for better contrast */
+    }
+
+    /* Login Card */
+    .login-card {
+        width: 80%; /* Make the card take up more screen width */
+        padding: 1rem; /* Add balanced padding */
+        margin: 0 0; /* Center the card */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soften shadows */
+    }
+
+    .app-title {
+        font-size: 1.5rem; /* Reduce title size */
+    }
+
+    .app-description {
+        font-size: 0.9rem;
+    }
+
+    /* Form Labels and Inputs */
+    .email-label, .password-label {
+        margin-left: 0; /* Align labels to the left edge */
+        text-align: center; /* Center align labels */
+        font-size: 1rem; /* Adjust label font size */
+        margin-bottom: 0.25rem; /* Reduce spacing */
+    }
+
+    .email-input, .password-input {
+        width: 100%; /* Input fields take up full width */
+        margin-left: 0; /* Center inputs on the screen */
+        padding: 0.75rem; /* Adjust padding */
+    }
+
+    /* Buttons */
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 0.5rem; /* Add space between buttons */
+        justify-content: center; /* Center buttons */
+        align-items: center; /* Align buttons horizontally */
+    }
+
+    .login-button, #google-login-btn {
+        width: 100%; /* Make buttons full width */
+        font-size: 1rem; /* Adjust button font size */
+        padding: 0.5rem; /* Balanced padding */
+        text-align: center; /* Center button text */
+        margin: 0; /* Remove extra margins */
+    }
+
+    #google-login-btn {
+        background-color: #db4437; /* Ensure correct Google button color */
+    }
+
+    /* Footer */
+    .footer {
+        padding: 1rem; /* Compact footer padding */
+        font-size: 0.8rem; /* Reduce footer font size */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack footer items */
+        text-align: center;
+    }
+
+    .footer-department {
+        font-size: 0.8rem;
+    }
+}

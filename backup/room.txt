@@ -1,0 +1,127 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import { getFirestore, collection, getDocs, query } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
+// Firebase configuration (replace with your actual config)
+const firebaseConfig = {
+    apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+    authDomain: "visual-visionaries.firebaseapp.com",
+    projectId: "visual-visionaries",
+    storageBucket: "visual-visionaries.firebasestorage.app",
+    messagingSenderId: "24641645399",
+    appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+    measurementId: "G-TQRQKBESP5"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Function to get room name from URL query parameter
+function getRoomFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('room'); // Get the "room" parameter from the URL
+}
+
+// Fetch room data from Firestore
+async function fetchRoomData(roomName, selectedDay) {
+    try {
+        const q = query(collection(db, "scheduleData"));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            console.error("No documents found in Firestore.");
+            return;
+        }
+
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+
+            // Check if 'scheduleData' exists
+            if (data && Array.isArray(data.scheduleData)) {
+                const roomData = data.scheduleData.flatMap((entry) => entry.rooms)
+                    .find((room) => room.name.trim().toLowerCase() === roomName.trim().toLowerCase());
+
+                if (roomData) {
+                    displayRoomInfo(roomData, selectedDay);
+                } else {
+                    console.error(`Room "${roomName}" not found in Firestore.`);
+                }
+            } else {
+                console.error("No 'scheduleData' array found or it's in the wrong format.");
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching room data from Firestore:", error);
+    }
+}
+
+// Display room information and schedule for a selected day
+function displayRoomInfo(room, day) {
+    const roomInfoSection = document.querySelector('.room-info');
+    roomInfoSection.innerHTML = `
+        <h2>${room.name} (${room.type})</h2>
+        <p>Features: ${room.features.length > 0 ? room.features.join(', ') : "None"}</p>
+    `;
+
+    displaySchedule(room, day);
+}
+
+// Display the schedule for a specific day in a table
+function displaySchedule(room, day) {
+    const scheduleContainer = document.querySelector('.schedule-table');
+    if (!scheduleContainer) {
+        console.error("No schedule container found in the DOM.");
+        return;
+    }
+
+    const daySchedule = room.schedule[day.toLowerCase()];
+    if (!daySchedule) {
+        scheduleContainer.innerHTML = `<p>No schedule available for ${day}.</p>`;
+        return;
+    }
+
+    // Create table structure for the schedule
+    let tableHTML = `
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${daySchedule.map(slot => `
+                    <tr>
+                        <td>${slot.time}</td>
+                        <td>${slot.status}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+
+    scheduleContainer.innerHTML = tableHTML;
+}
+
+// Event listener for page load
+document.addEventListener('DOMContentLoaded', () => {
+    const roomName = getRoomFromURL();
+    if (!roomName) {
+        console.error("Room not found! Please go back and select a valid room.");
+        return;
+    }
+
+    const dayDropdown = document.querySelector('#dayDropdown');
+    const selectedDay = dayDropdown.value || "monday"; // Default to "monday" if no day is selected
+
+    // Fetch room data for the selected room and day
+    fetchRoomData(roomName, selectedDay);
+
+    // Update schedule when the dropdown value changes
+    dayDropdown.addEventListener('change', () => {
+        const selectedDay = dayDropdown.value;
+        if (selectedDay) {
+            fetchRoomData(roomName, selectedDay);
+        }
+    });
+});

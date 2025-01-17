@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive Sign Up</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <script type="module" src="js/signup.js" defer></script>
+</head>
+<body>
+    <main class="resource-hive-container">
+        <section class="hero-section">
+            <img src="img/dit.jpg" alt="Resource Hive background" class="hero-image" aria-hidden="true">
+            <div class="signup-card">
+                <img src="img/beelogo.png" alt="Resource Hive logo" class="logo">
+                <h1 class="app-title">Create Your Account</h1>
+                <p class="app-description">Sign up to manage and book resources seamlessly.</p>
+
+                <!-- Form with action pointing to signup.php -->
+                <form id="signup-form">
+                    <label for="name-input" class="input-label">Full Name:</label>
+                    <input type="text" id="name-input" name="fullname" class="input-field" placeholder="Your Full Name" required>
+
+                    <label for="email-input" class="input-label">CvSU Email:</label>
+                    <input type="email" id="email-input" name="email" class="input-field" placeholder="name@cvsu.edu.ph" required>
+
+                    <label for="password-input" class="input-label">Password:</label>
+                    <input type="password" id="password-input" name="password" class="input-field" placeholder="Create a password" required>
+
+                    <label for="contact-input" class="input-label">Contact No.:</label>
+                    <input type="tel" id="contact-input" name="contact" class="input-field" placeholder="09xxxxxxxxx" required pattern="[0-9]{11}">
+
+                    <button type="submit" id="submit-input" class="signup-button">Sign Up</button>
+                </form>
+                <div id="signup-message" class="signup-message"></div>
+                <p class="login-info">
+                    Already have an account? <a href="login.html" class="login-link">Log in here</a>.
+                </p>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-department">2024 CvSU - Department of Information Technology | <a href="https://cvsu.edu.ph/" target="_blank" rel="noopener noreferrer">CvSU Website</a></p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

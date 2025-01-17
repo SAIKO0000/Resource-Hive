@@ -1,0 +1,106 @@
+/* Base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    background: url('../img/dit.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+#reserveBtn {
+    background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5rem;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+#reserveBtn:hover {
+    transform: scale(1.05);
+}
+
+/* Available Rooms Section */
+.available-rooms {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem 0;
+}
+
+.room-grid {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+}
+
+.room-card {
+    flex: 0 0 300px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    scroll-snap-align: start;
+}
+
+.room-card:hover {
+    transform: scale(1.05);
+}
+
+/* Features Section */
+.features-section {
+    background: linear-gradient(145deg, #006666 10%, #008080 45%, #40E0D0 90%);
+    padding: 3rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .room-card {
+        flex: 0 0 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .room-card {
+        flex: 0 0 200px;
+    }
+}
+    

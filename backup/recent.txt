@@ -1,0 +1,1696 @@
+
+
+
+
+
+const rooms = [
+    {
+        floor: "1F",
+        name: "OS ROOM",
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied", "Occupied",
+                "Available",
+                "Occupied", "Occupied",
+                "Available", "Available",
+                "Occupied", "Occupied", "Occupied",
+                "Occupied", "Occupied",
+                "Available"
+            ],
+            tuesday: [
+                "Occupied",
+                "Occupied", "Occupied",
+                "Available", "Available",
+                "Occupied",
+                "Available", "Available"
+            ],
+            wednesday: [
+                "Occupied", "Occupied", "Occupied", // 7:00 AM - 10:00 AM
+                "Occupied", "Occupied", "Occupied", // 10:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 2:00 PM
+                "Occupied", "Occupied", // 2:00 PM - 4:00 PM
+                "Available", "Available" // 4:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",  // 7:00 AM - 8:00 AM
+                "Occupied", "Occupied", "Occupied",  // 8:00 AM - 11:00 AM
+                "Available", "Available",  // 11:00 AM - 1:00 PM
+                "Available", "Available",  // 1:00 PM - 3:00 PM
+                "Available", "Available"  // 3:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied", "Occupied", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 10:00 AM
+                "Occupied", "Occupied", "Occupied", // 10:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 2:00 PM
+                "Available", "Available", // 2:00 PM - 4:00 PM
+                "Available", "Available", // 3:00 PM - 5:00 PM
+                "Available" // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", "Available", // 7:00 AM - 9:00 AM
+                "Available", "Available", // 9:00 AM - 11:00 AM
+                "Available", "Available", // 11:00 AM - 1:00 PM
+                "Available", "Available", // 1:00 PM - 3:00 PM
+                "Available", "Available", // 3:00 PM - 5:00 PM
+                "Available" // 5:00 PM - 8:00 PM
+            ],
+        }
+    },
+
+    {
+        floor: "1F",
+        name: "CCL 101", // New room
+        type: "Laboratory",
+        features: ["AC", "TV"],
+        schedule: {
+            monday: [
+                "Occupied", // 7:00 AM - 9:00 AM
+                "Occupied", // 9:00 AM - 10:00 AM
+                "Available", // 10:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 2:00 PM
+                "Available", // 2:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied", "Occupied", // 7:00 AM - 9:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Occupied", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+
+            wednesday: [
+                "Occupied", "Occupied", // 7:00 AM - 9:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Occupied", // 1:00 PM - 3:00 PM
+                "Occupied", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+
+            thursday: [
+                "Occupied", "Occupied", // 7:00 AM - 9:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Occupied", // 1:00 PM - 3:00 PM
+                "Occupied", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+
+            friday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+
+        },
+    },
+
+
+    {
+        floor: "1F",
+        name: "CCL 102", // New room
+        type: "Laboratory",
+        features: ["AC", "TV"],
+        schedule: {
+            monday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Available",   // 10:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Available",   // 10:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Available",   // 10:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available",   // 7:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "2F",
+        name: "ITC 201", // New room
+        type: "Classroom",
+        features: ["TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 2:00 PM
+                "Occupied",    // 2:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 6:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 6:00 PM
+                "Available",   // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 12:00 PM
+                "Occupied",    // 12:00 PM - 2:00 PM
+                "Occupied",    // 2:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 5:00 PM
+                "Occupied",    // 5:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 6:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 2:00 PM
+                "Occupied",    // 2:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 6:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available",   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+    {
+
+        floor: "2F",
+        name: "CCL 201", // New room
+        type: "Laboratory",
+        features: ["AC, TV"],
+        schedule: {
+            floor: "2F",
+            name: "ITC 201", // New room
+            type: "Classroom",
+            features: ["TV"],
+            schedule: {
+                monday: [
+                    "Available",    // 7:00 AM - 10:00 AM
+                    "Available",    // 10:00 AM - 11:00 AM
+                    "Occupied",     // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 2:00 PM
+                    "Available",    // 2:00 PM - 4:00 PM
+                    "Available",    // 4:00 PM - 6:00 PM
+                    "Available"     // 6:00 PM - 8:00 PM
+                ],
+                tuesday: [
+                    "Available",    // 7:00 AM - 9:00 AM
+                    "Available",    // 9:00 AM - 11:00 AM
+                    "Available",    // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 3:00 PM
+                    "Available",    // 3:00 PM - 5:00 PM
+                    "Available"     // 5:00 PM - 8:00 PM
+                ],
+                wednesday: [
+                    "Available",    // 7:00 AM - 9:00 AM
+                    "Available",    // 9:00 AM - 11:00 AM
+                    "Available",    // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 3:00 PM
+                    "Available",    // 3:00 PM - 5:00 PM
+                    "Available",    // 5:00 PM - 8:00 PM
+                ],
+                thursday: [
+                    "Available",    // 7:00 AM - 9:00 AM
+                    "Available",    // 9:00 AM - 11:00 AM
+                    "Available",    // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 3:00 PM
+                    "Available",    // 3:00 PM - 5:00 PM
+                    "Available"     // 5:00 PM - 8:00 PM
+                ],
+                friday: [
+                    "Available",    // 7:00 AM - 9:00 AM
+                    "Available",    // 9:00 AM - 11:00 AM
+                    "Available",    // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 3:00 PM
+                    "Available",    // 3:00 PM - 5:00 PM
+                    "Available"     // 5:00 PM - 8:00 PM
+                ],
+                saturday: [
+                    "Available",    // 7:00 AM - 9:00 AM
+                    "Available",    // 9:00 AM - 11:00 AM
+                    "Available",    // 11:00 AM - 1:00 PM
+                    "Available",    // 1:00 PM - 3:00 PM
+                    "Available",    // 3:00 PM - 5:00 PM
+                    "Available"     // 5:00 PM - 8:00 PM
+                ]
+            }
+        }
+    },
+
+    {
+        floor: "2F",
+        name: "CCL 202", // New room
+        type: "Laboratory",
+        features: ["AC. TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "2F",
+        name: "CCL 203", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+
+
+    {
+        floor: "2F",
+        name: "CCL 204", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 6:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Occupied",    // 4:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 10:00 AM
+                "Occupied",    // 10:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 4:00 PM
+                "Available",   // 4:00 PM - 6:00 PM
+                "Available"    // 6:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "2F",
+        name: "CCL 205", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Occupied",    // 5:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+    {
+        floor: "3F",
+        name: "CCL 301", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "3F",
+        name: "CCL 302", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Occupied",    // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",    // 7:00 AM - 9:00 AM
+                "Occupied",    // 9:00 AM - 11:00 AM
+                "Occupied",    // 11:00 AM - 1:00 PM
+                "Occupied",    // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Occupied",    // 5:00 PM - 7:00 PM
+                "Available"    // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",   // 7:00 AM - 9:00 AM
+                "Available",   // 9:00 AM - 11:00 AM
+                "Available",   // 11:00 AM - 1:00 PM
+                "Available",   // 1:00 PM - 3:00 PM
+                "Available",   // 3:00 PM - 5:00 PM
+                "Available"    // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "3F",
+        name: "CCL 303", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available"  // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Available", // 10:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available"  // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "3F",
+        name: "CCL 304", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 2:00 PM
+                "Occupied",  // 2:00 PM - 4:00 PM
+                "Available"  // 4:00 PM - 6:00 PM
+            ],
+            tuesday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 11:00 AM
+                "Occupied",  // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Occupied",  // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 11:00 AM
+                "Occupied",  // 11:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 3:00 PM
+                "Occupied",  // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Occupied",  // 11:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 3:00 PM
+                "Occupied",  // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "3F",
+        name: "CCL 305", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Available", // 10:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 2:00 PM
+                "Available", // 2:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available"  // 6:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available", // 6:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available", // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "3F",
+        name: "CCL 306", // New room
+        type: "Laboratory",
+        features: ["AC,TV"],
+        schedule: {
+            monday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Occupied",  // 4:00 PM - 7:00 PM
+                "Available", // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+    {
+        floor: "4F",
+        name: "ITC 401", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 11:00 AM
+                "Occupied",  // 11:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 3:00 PM
+                "Occupied",  // 3:00 PM - 5:00 PM
+                "Occupied",  // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 1:00 PM
+                "Occupied",  // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Occupied",  // 5:00 PM - 7:00 PM
+                "Available"  // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 11:00 AM
+                "Occupied",  // 11:00 AM - 1:00 PM
+                "Available", // 12:00 PM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 5:00 PM
+                "Occupied",  // 5:00 PM - 7:00 PM
+                "Available"  // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",  // 7:00 AM - 9:00 AM
+                "Occupied",  // 9:00 AM - 12:00 PM
+                "Available", // 12:00 PM - 1:00 PM
+                "Occupied",  // 1:00 PM - 3:00 PM
+                "Occupied",  // 3:00 PM - 5:00 PM
+                "Available", // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",  // 7:00 AM - 10:00 AM
+                "Occupied",  // 10:00 AM - 1:00 PM
+                "Occupied",  // 1:00 PM - 4:00 PM
+                "Available", // 4:00 PM - 6:00 PM
+                "Available", // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available", // 7:00 AM - 9:00 AM
+                "Available", // 9:00 AM - 11:00 AM
+                "Available", // 11:00 AM - 1:00 PM
+                "Available", // 1:00 PM - 3:00 PM
+                "Available", // 3:00 PM - 5:00 PM
+                "Available"  // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "4F",
+        name: "CCL 401", // New room
+        type: "Laboratory",
+        features: ["TV, AC"],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+
+    {
+
+        floor: "4F",
+        name: "ITC 402", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 10:00 AM
+                "Available",  // 10:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+                "Available",  // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available",  // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 6:00 PM
+                "Available",  // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available",  // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+    {
+
+        floor: "4F",
+        name: "CCL 402", // New room
+        type: "Laboratory",
+        features: ["AC, TV"],
+        schedule: {
+            monday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+            ],
+            wednesday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+    {
+
+        floor: "4F",
+        name: "ITC 403", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "4F",
+        name: "ITC 404", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied",   // 7:00 AM - 8:00 AM
+                "Occupied",   // 8:00 AM - 10:00 AM
+                "Available",  // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Occupied",   // 12:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "4F",
+        name: "ITC 408", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Available",  // 10:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied"    // 5:00 PM - 7:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 8:00 AM
+                "Occupied",   // 8:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+
+    {
+        floor: "5F",
+        name: "ITC 501", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 2:00 PM
+                "Available",  // 2:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 2:00 PM
+                "Occupied",   // 2:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "5F",
+        name: "ITC 502", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied"    // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 4:00 PM
+                "Occupied",   // 4:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 2:00 PM
+                "Available",  // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 6:00 PM
+                "Available"   // 6:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+
+    {
+        floor: "5F",
+        name: "ITC 503", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 12:00 PM
+                "Occupied",   // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Occupied",   // 7:00 AM - 10:00 AM
+                "Available",  // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 2:00 PM
+                "Available",  // 2:00 PM - 4:00 PM
+                "Available",  // 4:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+    {
+        floor: "5F",
+        name: "ITC 504", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 10:00 AM
+                "Occupied",   // 10:00 AM - 12:00 PM
+                "Available",  // 12:00 PM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+
+
+    {
+        floor: "5F",
+        name: "ITC 505", // New room
+        type: "Classroom",
+        features: [],
+        schedule: {
+            monday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            tuesday: [
+                "Occupied",   // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Occupied",   // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            wednesday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Occupied",   // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Occupied",   // 1:00 PM - 3:00 PM
+                "Occupied",   // 3:00 PM - 5:00 PM
+                "Occupied",   // 5:00 PM - 7:00 PM
+                "Available"   // 7:00 PM - 8:00 PM
+            ],
+            thursday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            friday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ],
+            saturday: [
+                "Available",  // 7:00 AM - 9:00 AM
+                "Available",  // 9:00 AM - 11:00 AM
+                "Available",  // 11:00 AM - 1:00 PM
+                "Available",  // 1:00 PM - 3:00 PM
+                "Available",  // 3:00 PM - 5:00 PM
+                "Available"   // 5:00 PM - 8:00 PM
+            ]
+        }
+    },
+
+]
+
+
+//Populate the room info and dropdown from interactive_map.html.
+window.onload = function() {
+    const roomName = localStorage.getItem('selectedRoom');
+    const roomData = rooms.find(room => room.name === roomName);
+
+    if (roomData) {
+        // Display room info
+        document.querySelector('.room-info').innerHTML = `
+            <h2>${roomData.name}</h2>
+            <p>Type: ${roomData.type}</p>
+            <p>Features: ${roomData.features.join(', ') || 'None'}</p>
+        `;
+
+        // Preload schedule for the first dropdown option
+        displaySchedule(roomData);
+    } else {
+        document.querySelector('.room-info').innerHTML = '<p>Room data not found.</p>';
+    }
+};
+
+//Handle the dropdown change and dynamically display the schedule
+function displaySchedule() {
+    const roomName = localStorage.getItem('selectedRoom');
+    const selectedDay = document.getElementById('dayDropdown').value;
+
+    if (!selectedDay) return;
+
+    const roomData = rooms.find(room => room.name === roomName);
+    const schedule = roomData?.schedule[selectedDay];
+
+    if (schedule) {
+        const scheduleBody = document.getElementById('scheduleBody');
+        scheduleBody.innerHTML = ''; // Clear previous schedule
+
+        schedule.forEach((status, index) => {
+            const startHour = 7 + index; // Start time (7 AM base)
+            const endHour = 8 + index; // End time
+
+            // Convert to 12-hour format
+            const formattedStart = formatTo12Hour(startHour);
+            const formattedEnd = formatTo12Hour(endHour);
+            const time = `${formattedStart} - ${formattedEnd}`;
+
+            const row = document.createElement('tr');
+            row.className = status === 'Available' ? 'available-row' : '';
+            row.innerHTML = `
+                <td>${time}</td>
+                <td>${status}</td>
+            `;
+
+            // Attach click event to available rows
+            if (status === 'Available') {
+                row.addEventListener('click', () => openTimeModal(roomName, time));
+            }
+
+            scheduleBody.appendChild(row);
+        });
+    }
+}
+
+// Helper function to convert 24-hour time to 12-hour format
+function formatTo12Hour(hour) {
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const adjustedHour = hour % 12 || 12; // Convert 0 to 12 for 12 AM/PM
+    return `${adjustedHour}:00 ${period}`;
+}
+
+
+//Show a modal when reserving an available slot.
+function openTimeModal(roomName, time) {
+    const modal = document.getElementById('timeModal');
+    modal.style.display = 'block';
+    document.getElementById('selectedRoomName').textContent = `Room: ${roomName}`;
+    document.getElementById('reservationTime').textContent = `Time: ${time}`;
+}
+
+function closeTimeModal() {
+    document.getElementById('timeModal').style.display = 'none';
+}
+
+function confirmReservation() {
+    const reason = document.getElementById('reservationReason').value;
+    if (reason.trim() === '') {
+        alert('Please provide a reason for the reservation.');
+        return;
+    }
+
+    alert('Reservation confirmed!');
+    closeTimeModal();
+}

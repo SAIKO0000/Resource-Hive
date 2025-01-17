@@ -1,0 +1,276 @@
+/* Header/Navbar Styles */
+.navbar {
+    background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.8rem;
+    font-family: 'Alumni Sans Collegiate One', serif;
+    display: flex;
+    align-items: center;
+    gap: 0rem;
+}
+
+.navbar-brand:hover {
+    color: #fff !important;
+}
+
+.navbar-brand .logo {
+    height: 50px;
+    width: auto;
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem !important;
+    transition: transform 0.2s;
+}
+
+.nav-link:hover {
+    transform: scale(1.05);
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.profile-icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: transform 0.2s;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Footer Styles */
+.main-footer {
+    background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+    color: white;
+    padding: 3rem 0 0;
+}
+
+.footer-info,
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 0.4rem;
+}
+
+.footer-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+    width: 100%;
+}
+
+.contact-item .icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.contact-item span {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-links ul,
+.social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+.footer-links li,
+.social-links li {
+    text-align: center;
+    width: 100%;
+}
+
+.footer-links a,
+.social-links a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    transition: transform 0.2s;
+    width: 100%;
+}
+
+.footer-links a:hover,
+.social-links a:hover {
+    transform: translateX(5px);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-bottom {
+    background: #E0F7FA;
+    color: #333;
+    padding: 0.5rem 0;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .navbar {
+        position: relative;
+    }
+
+    .navbar-brand {
+        width: 100%;
+        justify-content: center;
+        gap: 0rem;
+    }
+
+    .navbar-brand:focus {
+        color: #fff;
+    }
+
+    .navbar-brand .logo {
+        height: 45px;
+    }
+
+    .navbar-brand span {
+        font-size: 1.6rem;
+    }
+
+    .navbar > .container-fluid {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1030;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .nav-item {
+        margin: 0rem 0;
+    }
+
+    .profile-link {
+        display: none;
+    }
+
+    .mobile-profile-links {
+        margin-top: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgb(255, 255, 255);
+    }
+
+    .mobile-profile-links .nav-link {
+        color: #fff !important;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem !important;
+        text-transform: uppercase;
+        margin: 0.1rem 0;
+        text-align: center;
+        display: block;
+    }
+
+    .navbar-collapse {
+        background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        z-index: 1020;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-info,
+    .footer-links,
+    .footer-social {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .navbar-brand .logo {
+        height: 40px;
+    }
+
+    .footer-title {
+        font-size: 1.5rem;
+    }
+
+    .contact-item span {
+        font-size: 0.8rem;
+    }
+}

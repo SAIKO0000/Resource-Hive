@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Hive - Search</title>
+    <link rel="stylesheet" href="CSS/contact.css">
+    
+    <!-- Add the EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+      
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
+            authDomain: "visual-visionaries.firebaseapp.com",
+            projectId: "visual-visionaries",
+            storageBucket: "visual-visionaries.firebasestorage.app",
+            messagingSenderId: "24641645399",
+            appId: "1:24641645399:web:21e2549cf65843f09a2c12",
+            measurementId: "G-TQRQKBESP5"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+      
+        console.log('Firebase App Initialized:', app);
+        console.log('Auth Instance:', auth);
+        console.log('Current User on Page Load:', auth.currentUser);
+      
+        // Monitor authentication state
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User is signed in:', user);
+            } else {
+                console.log('No user is signed in.');
+            }
+        });
+    
+        // Store the login state for session (temporary) or persistence across sessions
+        sessionStorage.setItem('isLoggedIn', 'true'); // Store the login state
+        const isLoggedInSession = sessionStorage.getItem('isLoggedIn');
+        localStorage.setItem('isLoggedIn', 'true');  // Store the login state
+        const isLoggedInPersistent = localStorage.getItem('isLoggedIn');
+    
+        // Check the login state when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for login state from sessionStorage or localStorage
+            if (!sessionStorage.getItem('isLoggedIn') && !localStorage.getItem('isLoggedIn')) {
+                // Redirect to login page if not logged in
+                window.location.href = 'login.html';
+            }
+    
+            // Logout button logic
+            const logoutBtns = document.querySelectorAll('#logout-btn');
+            logoutBtns.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    try {
+                        const currentUser = auth.currentUser;
+                        if (!currentUser) {
+                            console.warn('No user is currently logged in.');
+                            alert('No user is logged in. Please log in first.');
+                            return; // Exit early if no user is logged in
+                        }
+    
+                        const tokenResult = await currentUser.getIdTokenResult();
+                        console.log('Token Result:', tokenResult);
+    
+                        // Sign out the user
+                        await signOut(auth);
+                        console.log('User successfully logged out.');
+    
+                        // Clear session and local storage
+                        localStorage.removeItem('isLoggedIn');
+                        sessionStorage.clear();
+    
+                        // Redirect to login page
+                        window.location.replace('login.html');
+    
+                        // Prevent going back to the previous page
+                        history.pushState(null, null, location.href);
+                        history.forward();
+                    } catch (error) {
+                        console.error('Error during logout:', error);
+                        alert('An error occurred while logging out.');
+                    }
+                });
+            });
+        });
+
+// Initialize EmailJS with your user ID
+emailjs.init("BYNAoyMY2c1t_sO0W");  // Replace with your actual EmailJS user ID
+
+// Wait for the DOM to be fully loaded before attaching event listeners
+document.addEventListener("DOMContentLoaded", () => {
+    // Select the form
+    const form = document.querySelector(".contact-form form");
+
+    if (!form) {
+        console.error("Form not found!");
+        return;
+    }
+
+    // Select the submit button
+    const submitButton = form.querySelector("button");
+
+    // Handle the form submission
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent default form submission
+
+        // Send the form data to EmailJS
+        emailjs.sendForm("service_jfykcms", "template_xj25ymu", form)
+            .then(function(response) {
+                console.log("Success:", response);
+                alert("Your message has been sent successfully!");
+                form.reset();  // Reset the form after successful submission
+            }, function(error) {
+                console.error("Error:", error);
+                alert("Oops! Something went wrong. Please try again later.");
+            });
+    });
+});
+
+
+
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="img/beelogo.png" alt="Resource Hive Logo" class="logo">
+            <p>ResourceHive</p>
+        </div>
+
+        <div class="header-links">
+            <a href="resourcehive.html" onclick="scrollToTop()">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="myreservation.html">HISTORY</a>
+     
+            <a href="profile.html" class="profile-link">
+                <img src="img/profile.jpg" alt="Profile Icon" class="profile-icon">
+            </a>
+        </div>
+    
+    </header>
+   
+    <div class="menu-toggle" onclick="toggleSidePanel()">
+        <span>&#9776;</span> <!-- This is the hamburger icon -->
+    </div>
+        <!-- Side Panel (Mobile/Tablet Only) -->
+        <div id="sidePanel" class="side-panel">
+            <div class="side-panel-links">
+                <a href="resourcehive.html">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="myreservation.html">HISTORY</a>
+                <a href="profile.html">VIEW PROFILE</a>
+                    <a href="analytics.html">ANALYTICS</a>
+                <a href="#" id="logout-btn">LOGOUT</a>
+                <!-- Add other links here as necessary -->
+            </div>
+        </div>
+
+    <!-- Contact Section -->
+    <section class="contact-container">
+        <!-- Contact Information Box -->
+        <div class="contact-info-box">
+            <h2>Contact Us</h2>
+            <p>+63 961 720 8991</p>
+            <a href="mailto:resourcehive@gmail.com">visualvisionaries@gmail.com</a>
+            <p>Indang, Cavite</p>
+        </div>
+
+        <div class="contact-form">
+            <!-- Removed action attribute -->
+            <form class="contact-form">
+      
+                <input type="text" name="from_name" placeholder="Your Name" required>
+                <input type="email" name="from_email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                    <img src="img/beelogo.png" alt="Resource Hive Footer Logo" class="footer-logo">
+                    <h2 class="footer-title">Resource Hive</h2>
+                <address class="contact-info">
+                    <p><img src="img/call.png" alt="Phone icon" class="icon"> +639 61 720 8991</p>
+                    <p><img src="img/email.png" alt="Email icon" class="icon"> resourcehive@gmail.com</p>
+                    <p><img src="img/map.png" alt="Location icon" class="icon"> Indang, Cavite, Philippines</p>
+                </address>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about-resource-hive">About Resource Hive</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                    <li><a href="#how-to-book">How to Book</a></li>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#about-us">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow us on</h3>
+                <ul class="social-links">
+                    <li><a href="fb-url" aria-label="Facebook"><img src="img/fb.png" alt="Facebook icon" class="social-icon"> Facebook</a></li>
+                    <li><a href="ig-url" aria-label="Instagram"><img src="img/ig.png" alt="Instagram icon" class="social-icon"> Instagram</a></li>
+                    <li><a href="yt-url" aria-label="YouTube"><img src="img/yt.webp" alt="YouTube icon" class="social-icon"> YouTube</a></li>
+                </ul>
+                <button class="feedback-button">
+                    <span style="color: black;">Send feedback</span> 
+                    <span style="color: blue;"><br>(Click here)</span>
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 CvSU - Department of Information Technology</p>
+        </div>
+    </footer>
+    
+    <script src="js/contact.js"></script>
+</body>
+</html>
