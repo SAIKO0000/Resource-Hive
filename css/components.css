@@ -1,3 +1,13 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
 /* Header/Navbar Styles */
 .navbar {
     background: linear-gradient(135deg, rgba(0, 102, 102, 0.8) 0%, rgba(0, 128, 128, 0.8) 50%, rgba(64, 224, 208, 0.8) 100%);
@@ -14,7 +24,6 @@
     display: flex;
     align-items: center;
     gap: 0rem;
-
 }
 
 .navbar-brand:hover {
@@ -68,6 +77,8 @@
     background: linear-gradient(135deg, #006666 0%, #008080 50%, #40E0D0 100%);
     color: white;
     padding: 3rem 0 0;
+    margin-top: auto;
+    width: 100%;
 }
 
 .footer-info,
@@ -97,7 +108,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-
 }
 
 .contact-item {
@@ -179,13 +189,16 @@
 /* Mobile Responsiveness */
 @media (max-width: 992px) {
     .navbar {
-        position: relative;
+        position: relative !important;
+    }
+
+    .navbar > .container-fluid {
+        justify-content: flex-start !important;
     }
 
     .navbar-brand {
-        width: 100%;
-        justify-content: center;
-        gap: 0rem;
+        margin-right: auto !important;
+        width: auto !important;
     }
 
     .navbar-brand:focus {
@@ -200,16 +213,12 @@
         font-size: 1.6rem;
     }
 
-    .navbar > .container-fluid {
-        justify-content: center;
-        text-align: center;
-    }
-
     .navbar-toggler {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 1030;
+        margin-left: auto !important;
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        z-index: 1030 !important;
     }
 
     .navbar-nav {
@@ -227,7 +236,7 @@
     .mobile-profile-links {
         margin-top: 1rem;
         padding-top: 0.5rem;
-        border-top: 1px solid rgb(255, 255, 255, 0.6);
+        border-top: 1px solid rgba(255, 255, 255, 0.6);
     }
 
     .mobile-profile-links .nav-link {
