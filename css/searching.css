@@ -1,12 +1,20 @@
+<<<<<<< Updated upstream
 /* General Styling */
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+=======
+/* Base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+>>>>>>> Stashed changes
     color: #333;
     overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 /* Header and Sidebar */
 header {
     background-color: #008080;
@@ -115,6 +123,77 @@ header nav a:hover {
 }
 
 .header-links a:focus {
+=======
+.search-section {
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    max-width: 750px;
+    margin: 100px auto;
+    margin-bottom: 30px;
+    border: solid 2px #008080;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    width: 80%;
+}
+
+.search-section:hover {
+    transform: translateY(-5px);
+}
+
+.search-section input[type="text"],
+.search-section select {
+    width: 50%;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 128, 128, 0.2);
+}
+
+.search-section input[type="text"]:focus,
+.search-section select:focus {
+    border-color: #40E0D0;
+    box-shadow: 0 0 8px 2px rgba(0, 128, 128, 0.4);
+}
+
+.search-section select {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    width: 50%;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 128, 128, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-section select:hover {
+    border-color: #40E0D0;
+}
+
+button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #008080;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 128, 128, 0.2);
+>>>>>>> Stashed changes
     outline: none;
     color: #00ffff; /* Cyan color for focus */
 }
@@ -260,6 +339,7 @@ header nav a:hover {
     font-size: 1em;
 }
 
+<<<<<<< Updated upstream
 /* Updated add button styling for aesthetics */
 .add-button {
     background-color: #008080;
@@ -443,3 +523,49 @@ header nav a:hover {
         margin-right: 40px;
     }
 }
+=======
+@media (max-width: 480px) {
+    body, html {
+        font-size: 14px;
+    }
+
+   /* Search section */
+   .search-section {
+    width: 80%;
+    padding: 20px;
+    margin-top: 8rem;
+    max-width: 100%; /* Ensures full width on small screens */
+}
+
+/* Input fields */
+.search-section input[type="text"],
+.search-section select {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Room card */
+.room-card {
+    flex-direction: column; /* Stack card elements vertically */
+    padding: 15px;
+    width: 100%; 
+    margin-top: 2rem;/* Ensure card uses full width on small screens */
+}
+
+.room-info {
+    padding-left: 0;
+    max-width: 100%; /* Ensure room info takes full width */
+}
+
+.room-info h4 {
+    font-size: 1.1rem; /* Adjust heading size */
+}
+
+.room-info p {
+    font-size: 1.1rem; /* Adjust paragraph size */
+}
+
+}
+>>>>>>> Stashed changes

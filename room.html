@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Hive</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/room.css">
+    <link rel="stylesheet" href="css/components.css">
     <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
 
     <!-- Firebase Firestore -->
@@ -12,6 +15,7 @@
 
 </head>
 <body>
+<<<<<<< Updated upstream
     <header>
         <div class="header-logo">
             <p>Resource Hive</p>
@@ -23,6 +27,10 @@
             <a href="#">Logout</a>
         </div>
     </header>
+=======
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+>>>>>>> Stashed changes
 
     <section class="reservation-container">
         <div class="room-info">
@@ -69,6 +77,7 @@
         </div>
     </section>
 
+<<<<<<< Updated upstream
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-info">
@@ -110,6 +119,31 @@
     </footer>
 
     <script type="module" src="js/room.js"></script>
+=======
+    <script>
+        // Ensure closeTimeModal is defined and accessible
+        function closeTimeModal() {
+            const modal = document.getElementById('timeModal');
+            modal.style.display = 'none';
+            document.getElementById('reservationReason').value = ''; // Reset the reason field
+        }
+    
+        // Add event listener for the close button
+        const closeModalButton = document.getElementById('closeModalButton');
+        closeModalButton.addEventListener('click', closeTimeModal);
+    </script>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/components.js"></script>
+    <script type="module" src="js/room.js" defer></script> 
+    <script  src="js/resourcehive.js">defer</script>
+>>>>>>> Stashed changes
 
 </body>
 </html>

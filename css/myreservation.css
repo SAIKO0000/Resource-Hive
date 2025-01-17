@@ -1,13 +1,18 @@
+/* Base styles */
 body, html {
     margin: 0;
     padding: 0;
+<<<<<<< Updated upstream
     font-family: sans-serif;
     font-weight: 500;
     font-style: normal;
+=======
+>>>>>>> Stashed changes
     color: #333;
     overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 
 header {
     background-color: #008080;
@@ -102,6 +107,19 @@ header {
 .my-reservations {
     margin: 100px auto;
     width: 80%;
+=======
+#reservationHistory {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 5px;
+    overflow: hidden; /* Prevent overflow from rounded borders */
+}
+
+#reservationHistory th, 
+#reservationHistory td {
+    padding: 12px;
+>>>>>>> Stashed changes
     text-align: left;
 }
 

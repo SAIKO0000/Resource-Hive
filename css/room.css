@@ -1,13 +1,18 @@
+/* Base styles */
 body, html {
     margin: 0;
     padding: 0;
+<<<<<<< Updated upstream
     font-family: sans-serif;
     font-weight: 500;
     font-style: normal;
+=======
+>>>>>>> Stashed changes
     color: #333;
     overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 
 header {
     background-color: #008080;
@@ -100,6 +105,8 @@ header {
 }
 
 
+=======
+>>>>>>> Stashed changes
 /* Main reservation container */
 .reservation-container {
     width: 80%;
@@ -264,6 +271,7 @@ textarea {
     resize: vertical;
 }
 
+<<<<<<< Updated upstream
 /* footer */
 .main-footer {
     background-color: #008080;
@@ -425,6 +433,8 @@ textarea {
     }
 }
 
+=======
+>>>>>>> Stashed changes
 /*available time will hover*/
 .available-row {
     cursor: pointer;
@@ -451,3 +461,28 @@ textarea {
     background-color: teal;
     color: white;
 }
+<<<<<<< Updated upstream
+=======
+
+/* Mobile responsiveness for content section */
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 1rem;
+        width: 100%; /* Take full width on mobile */
+    }
+    
+    .content-inner {
+        padding: 1rem;
+    }
+    
+    .content-text {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    .content-images {
+        width: 100%; /* Make images full width on mobile */
+        height: auto;
+    }
+}
+>>>>>>> Stashed changes
