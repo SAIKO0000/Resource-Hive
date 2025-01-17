@@ -2,7 +2,7 @@ name: "Daily Schedule Reset"
 
 on:
   schedule:
-    - cron: "15 23 * * *"  # Runs daily at 7:15 AM PHT (23:15 UTC)
+    - cron: "0 16 * * *"  # Runs daily at midnight PHT (16:00 UTC)
   workflow_dispatch:    # Allows manual triggering
 
 jobs:
