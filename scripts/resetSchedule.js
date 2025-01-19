@@ -14,7 +14,7 @@ const db = admin.firestore();
 // Function to reset schedule data
 async function resetSchedule() {
   try {
-    const dataPath = path.join(__dirname, 'default-schedule.json');
+    const dataPath = path.join(__dirname, 'scheduleData.json');
     const data = fs.readFileSync(dataPath, 'utf-8');
     const defaultSchedule = JSON.parse(data);
 
