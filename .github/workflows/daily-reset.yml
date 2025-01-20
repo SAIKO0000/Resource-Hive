@@ -28,6 +28,3 @@ jobs:
 
       - name: Run Reset Script
         run: node scripts/resetSchedule.js
-
-      - name: Run Reset Buttons Script
-        run: node scripts/resetButtons.js
