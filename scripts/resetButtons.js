@@ -14,6 +14,11 @@ exports.resetDailyReservations = functions.pubsub.schedule('0 16 * * *') // 16:0
             const updatedScheduleRef = db.collection('updatedSchedule');
             const snapshot = await updatedScheduleRef.get();
 
+            if (snapshot.empty) {
+                console.log('No reservations found to reset.');
+                return;
+            }
+
             const batch = db.batch();
 
             snapshot.forEach((doc) => {
