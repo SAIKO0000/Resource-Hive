@@ -267,7 +267,6 @@
     openModalButton.classList.add('open-modal-btn');
     openModalButton.style.display = "block";
     openModalButton.style.margin = "20px auto";
-    openModalButton.style.marginLeft = "23rem";
     openModalButton.style.padding = "10px 20px";
     openModalButton.style.fontSize = "16px";
     openModalButton.style.textAlign = "center";
