@@ -19,7 +19,9 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install firebase-admin
+        run: |
+          npm install firebase-admin
+          npm install firebase-functions  # Add this line to install firebase-functions
 
       - name: Decode Service Account Key
         env:
