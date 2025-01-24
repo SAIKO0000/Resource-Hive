@@ -94,7 +94,7 @@
     "yaml": "^2.6.1"
   },
   "scripts": {
-    "build": "tailwindcss build src/styles.css -o src/output.css"
+    "build": "cp -r . public"
   },
   "keywords": [],
   "author": "",
