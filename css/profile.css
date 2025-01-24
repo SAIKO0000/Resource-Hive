@@ -122,16 +122,12 @@ body, html {
 
 @media (max-width: 480px) {
     /* Container adjustments */
-    .container {
-        padding: 15px;
-        width: 100%;
-        max-width: 95%;
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
+    .container-profile {
+        padding: 1rem;
+        width: 100%; /* Take full width on mobile */
+        margin: 0 auto; /* Center the container */
+        margin-top: 60px;
     }
-
     /* Profile specific text */
     .container p {
         font-size: 0.8rem;
