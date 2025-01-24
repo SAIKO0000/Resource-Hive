@@ -1,14 +1,11 @@
-// analytics.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
 import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     const dayDropdown = document.getElementById('dayDropdown');
     const mostReservedChartCtx = document.getElementById('mostReservedChart').getContext('2d');
-    const trendsChartCtx = document.getElementById('trendsChart').getContext('2d');
     const roomStatsList = document.getElementById('roomStats');
 
-    // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyCuehkyhTTGuNFXyNEQqkERTXVkg3R6eDo",
         authDomain: "visual-visionaries.firebaseapp.com",
@@ -19,104 +16,112 @@ document.addEventListener('DOMContentLoaded', function () {
         measurementId: "G-TQRQKBESP5"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Initialize charts
     let mostReservedChart = new Chart(mostReservedChartCtx, {
-        type: 'bar',
-        data: {
-            labels: [],
-            datasets: [{
-                label: 'Most Reserved Rooms',
-                data: [],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    let trendsChart = new Chart(trendsChartCtx, {
         type: 'line',
         data: {
             labels: [],
             datasets: [{
-                label: 'Reservation Trends',
+                label: 'Room Reservations',
                 data: [],
-                fill: false,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
-                tension: 0.1
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Reservations'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Rooms'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
                 }
             }
         }
     });
 
-    // Function to fetch and process data
+    let userAnalyticsChart = new Chart(document.getElementById('userAnalyticsChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ['Previous Week', 'Current'],
+            datasets: [{
+                label: 'User Growth',
+                data: [0, 0],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Users'
+                    }
+                }
+            }
+        }
+    });
+
     async function fetchData(day) {
         try {
-            const q = query(collection(db, "updatedSchedule"), where("day", "==", day), where("status", "==", "Occupied"));
+            const q = query(collection(db, "updatedSchedule"), where("day", "==", day));
             const querySnapshot = await getDocs(q);
 
-            const data = [];
             const roomCounts = {};
 
             querySnapshot.forEach(doc => {
                 const docData = doc.data();
-                const { room, time } = docData;
+                const room = docData.room;
 
-                // Count reservations per room
-                roomCounts[room] = (roomCounts[room] || 0) + 1;
-
-                // Collect data for trends
-                data.push({ room, time });
+                if (room) {
+                    roomCounts[room] = (roomCounts[room] || 0) + 1;
+                }
             });
 
-            updateCharts(roomCounts, data);
+            updateCharts(roomCounts);
             updateStats(roomCounts);
+
         } catch (error) {
             console.error("Error fetching data: ", error);
         }
     }
 
-    // Function to update charts
-    function updateCharts(roomCounts, trendsData) {
-        // Update Most Reserved Rooms chart
+    function updateCharts(roomCounts) {
         const roomNames = Object.keys(roomCounts);
         const reservationCounts = Object.values(roomCounts);
 
         mostReservedChart.data.labels = roomNames;
         mostReservedChart.data.datasets[0].data = reservationCounts;
         mostReservedChart.update();
-
-        // Update Trends chart
-        const timeSlots = [...new Set(trendsData.map(item => item.time))].sort();
-        const trendsCounts = timeSlots.map(slot =>
-            trendsData.filter(item => item.time === slot).length
-        );
-
-        trendsChart.data.labels = timeSlots;
-        trendsChart.data.datasets[0].data = trendsCounts;
-        trendsChart.update();
     }
 
-    // Function to update stats list
     function updateStats(roomCounts) {
         roomStatsList.innerHTML = '';
+
         Object.entries(roomCounts).forEach(([room, count]) => {
             const li = document.createElement('li');
             li.textContent = `${room}: ${count} reservations`;
@@ -124,12 +129,59 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Event listener for day dropdown
+    async function fetchUserCount() {
+        try {
+            const userStatsElement = document.getElementById('userStats');
+            const accountsRef = collection(db, "accountDetails");
+            const querySnapshot = await getDocs(accountsRef);
+            
+            const emailCount = querySnapshot.docs.length;
+            
+            const li = document.createElement('li');
+            li.textContent = `Total Registered Users: ${emailCount}`;
+            userStatsElement.innerHTML = '';
+            userStatsElement.appendChild(li);
+
+            userAnalyticsChart.data.datasets[0].data = [emailCount - 5, emailCount];
+            userAnalyticsChart.update();
+            
+        } catch (error) {
+            console.error("Error fetching user count: ", error);
+        }
+    }
+
     dayDropdown.addEventListener('change', function () {
         const selectedDay = dayDropdown.value;
         fetchData(selectedDay);
     });
 
-    // Initial fetch for the default day
+    // Initial data fetching
     fetchData(dayDropdown.value);
+    fetchUserCount();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const statsItems = document.querySelectorAll('.stats-container ul li');
+    
+    statsItems.forEach(item => {
+        const text = item.textContent.trim();
+        const textLength = text.length;
+        
+        // Clear existing classes
+        item.classList.remove('short-text', 'medium-text', 'long-text');
+        
+        // Classify based on text length
+        if (textLength <= 15) {
+            item.classList.add('short-text');
+        } else if (textLength <= 30) {
+            item.classList.add('medium-text');
+        } else {
+            item.classList.add('long-text');
+        }
+        
+        // Optional: Add tooltip for full text if truncated
+        if (textLength > 30) {
+            item.setAttribute('title', text);
+        }
+    });
 });

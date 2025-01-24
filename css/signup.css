@@ -10,121 +10,162 @@ body, html {
 
 /* Main Container */
 .resource-hive-container {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
 }
 
-/* Hero Section */
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+
+.password-toggle i {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Remove these styles as they're no longer needed */
+.password-toggle img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover img {
+    opacity: 1;
+}
+
 .hero-section {
     position: relative;
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
 }
 
 .hero-image {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
     z-index: -1;
     opacity: 0.9;
-    box-shadow: 
-        0 8px 16px rgba(0.5, 0.5, 0.5, 0.5),
-        inset 0 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
 }
 
-/* Signup Card */
 .signup-card {
     position: relative;
     border-radius: 13px;
     background-color: rgba(255, 255, 255, 0.9);
     width: 50%;
-    max-width: 500px;
-    padding: 2rem;
+    max-width: 450px; /* Reduced max-width */
+    padding: 1.5rem; /* Reduced padding */
     text-align: center;
-    box-shadow: 
-        0 8px 16px rgba(0, 0, 0.5, 0.5),
-        inset 0 4px 8px rgba(0, 0, 0.5, 0.5);
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.5),
+        inset 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Logo */
 .logo {
-    width: 90px;
+    width: 80px; /* Reduced logo size */
+    margin-bottom: 0.8rem;
 }
 
+/* App Title */
 .app-title {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Reduced font size */
     font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin: 0.2rem 0;
 }
 
+/* App Description */
 .app-description {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduced font size */
     color: #333;
-    margin-bottom: 1.5rem;
-}
-
-/* Input Labels and Fields */
-.input-label {
-    font-size: 1.125rem;
-    font-weight: 500;
-    display: block;
-    text-align: left;
-    margin-bottom: 0.5rem;
-}
-
-.input-field {
-    border-radius: 8px;
-    background-color: #ececec;
-    font-size: 1rem;
-    color: #333;
-    padding: 1rem;
-    width: 100%;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
     margin-bottom: 1rem;
 }
 
-/* Button */
+/* Input Labels */
+.input-label {
+    font-size: 1rem; /* Reduced font size */
+    font-weight: 500;
+    display: block;
+    text-align: left;
+    margin-bottom: 0.4rem;
+    margin-left: 0; /* Removed left margin */
+}
+
+/* Input Fields */
+.input-field {
+    width: 100%;
+    max-width: 100%; /* Full width */
+    padding: 0.6rem; /* Reduced padding */
+    border-radius: 8px;
+    background-color: #ececec;
+    font-size: 0.9rem; /* Reduced font size */
+    color: #333;
+    margin-bottom: 0.8rem;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Signup Button */
 .signup-button {
     border-radius: 8px;
-    background-color: #008c73;
-    font-size: 1.25rem;
-    color: #fff;
-    padding: 0.75rem 2.5rem;
+    padding: 0.7rem 1.5rem; /* Reduced padding */
     border: none;
     cursor: pointer;
+    margin-top: 0.5rem;
     transition: background-color 0.3s ease;
+    width: 100%; /* Full width */
+    text-align: center;
+    font-size: 1rem; /* Reduced font size */
+    background-color: #008c73;
+    color: white;
 }
 
-.signup-button:hover {
-    background-color: #007961;
+/* Password Container */
+.password-container {
+    position: relative;
 }
 
-/* Messages */
-.signup-message {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: red;
+.password-input-wrapper {
+    position: relative;
 }
 
-.signup-message.success {
-    color: green;
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.6;
 }
 
-/* Link Text */
+/* Login Info */
 .login-info {
-    font-size: 0.9rem;
-    margin-top: 1rem;
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
 }
 
 .login-link {
@@ -132,9 +173,6 @@ body, html {
     text-decoration: none;
 }
 
-.login-link:hover {
-    text-decoration: underline;
-}
 
 /* Footer Information */
 .footer-info {
@@ -145,7 +183,7 @@ body, html {
 
 /* Sign Up Text and Link */
 .sign-up-text {
-    font-size: 0.9rem;
+    font-size: 0.2rem;
     margin-top: 1rem;
 }
 
@@ -188,71 +226,93 @@ body, html {
     font-size: 0.9rem;
     color: #555;
 }
-
 /* Mobile Responsiveness */
 @media (max-width: 480px) {
     body, html {
         font-size: 14px; /* Reduce base font size */
     }
 
+    .resource-hive-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 0 15px; /* Add side padding */
+    }
+
     .hero-section {
-        padding: 1rem; /* Add padding to the hero section */
-        flex-direction: column; /* Stack content vertically */
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        flex-direction: column;
         text-align: center;
     }
 
     .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
         opacity: 0.8; /* Slightly reduce image opacity for better contrast */
     }
 
     .signup-card {
-        width: 80%; /* Make the card take up more screen width */
+        width: 100%; /* Full width within container */
+        max-width: 350px; /* Maximum width */
         padding: 1rem;
-        margin: 0 0; /* Center the card with margin */
+        margin: 0 auto; /* Center horizontally */
+        position: relative;
+        z-index: 10; /* Ensure it's above the background */
+    }
+
+    .logo {
+        width: 70px;
     }
 
     .app-title {
-        font-size: 1.5rem; /* Reduce title font size */
+        font-size: 1.5rem;
     }
 
     .app-description {
-        font-size: 1rem; /* Keep it readable on small screens */
+        font-size: 0.8rem;
     }
 
     .input-label {
-        font-size: 1rem; /* Adjust input label size */
+        font-size: 0.9rem;
     }
 
     .input-field {
-        font-size: 1rem; /* Ensure fields are easy to read */
-        padding: 0.75rem; /* Adjust padding for input fields */
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
 
     .signup-button {
-        font-size: 1rem; /* Adjust button font size */
-        padding: 0.75rem 1.5rem; /* Adjust button padding */
-        width: 100%; /* Make buttons full width */
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
     }
 
     .signup-message {
-        font-size: 0.9rem; /* Adjust message font size */
+        font-size: 0.9rem;
     }
 
-    .login-info, .footer-info, .sign-up-text {
-        font-size: 0.8rem; /* Reduce secondary text font size */
+    .login-info {
+        font-size: 0.8rem;
+    }
+}
+
+/* Additional adjustments for slightly larger mobile screens */
+@media (min-width: 481px) and (max-width: 768px) {
+    .resource-hive-container {
+        padding: 0 20px;
     }
 
-    .footer {
-        font-size: 0.75rem; /* Reduce footer font size */
-        padding: 1rem; /* Add padding for better spacing */
-    }
-
-    .footer-content {
-        flex-direction: column; /* Stack footer items */
-        text-align: center; /* Center-align text */
-    }
-
-    .footer-department {
-        margin-top: 0.5rem;
+    .signup-card {
+        max-width: 400px;
     }
 }

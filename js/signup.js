@@ -25,12 +25,20 @@ signupForm.addEventListener('submit', async (event) => {
   const fullname = document.getElementById('name-input').value;
   const email = document.getElementById('email-input').value;
   const password = document.getElementById('password-input').value;
+  const confirmPassword = document.getElementById('confirm-password-input').value; // New line
   const contact = document.getElementById('contact-input').value;
 
+  // Add password confirmation check
+  if (password !== confirmPassword) {
+      signupMessage.textContent = "Passwords do not match!";
+      signupMessage.style.color = "red";
+      return;
+  }
+
   if (!email.endsWith('@cvsu.edu.ph')) {
-    signupMessage.textContent = "Please enter a valid CvSU email address (example: name@cvsu.edu.ph).";
-    signupMessage.style.color = "red";
-    return;
+      signupMessage.textContent = "Please enter a valid CvSU email address (example: name@cvsu.edu.ph).";
+      signupMessage.style.color = "red";
+      return;
   }
 
   try {
@@ -100,3 +108,21 @@ if (localStorage.getItem('isLoggedIn') === 'true') {
       history.pushState(null, null, location.href);
   };
 }
+
+
+// Add this line at the top of your file
+window.togglePassword = function(inputId, toggleElement) {
+    const input = document.getElementById(inputId);
+    const icon = toggleElement.querySelector('i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    }
+}
+

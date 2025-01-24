@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Hive Sign Up</title>
     <link rel="stylesheet" href="css/signup.css">
+
     <script type="module" src="js/signup.js" defer></script>
 </head>
 <body>
@@ -16,7 +17,6 @@
                 <h1 class="app-title">Create Your Account</h1>
                 <p class="app-description">Sign up to manage and book resources seamlessly.</p>
 
-                <!-- Form with action pointing to signup.php -->
                 <form id="signup-form">
                     <label for="name-input" class="input-label">Full Name:</label>
                     <input type="text" id="name-input" name="fullname" class="input-field" placeholder="Your Full Name" required>
@@ -24,9 +24,24 @@
                     <label for="email-input" class="input-label">CvSU Email:</label>
                     <input type="email" id="email-input" name="email" class="input-field" placeholder="name@cvsu.edu.ph" required>
 
-                    <label for="password-input" class="input-label">Password:</label>
-                    <input type="password" id="password-input" name="password" class="input-field" placeholder="Create a password" required>
+                                <!-- Update the password input sections -->
+                    <div class="password-container">
+                        <label for="password-input" class="input-label">Password:</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password-input" name="password" class="input-field" placeholder="Create a password" required>
+                            <span class="password-toggle" onclick="togglePassword('password-input', this)">
+                            </span>
+                        </div>
+                    </div>
 
+                    <div class="password-container">
+                        <label for="confirm-password-input" class="input-label">Confirm Password:</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="confirm-password-input" name="confirm-password" class="input-field" placeholder="Confirm your password" required>
+                            <span class="password-toggle" onclick="togglePassword('confirm-password-input', this)">
+                            </span>
+                        </div>
+                    </div>
                     <label for="contact-input" class="input-label">Contact No.:</label>
                     <input type="tel" id="contact-input" name="contact" class="input-field" placeholder="09xxxxxxxxx" required pattern="[0-9]{11}">
 

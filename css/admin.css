@@ -54,7 +54,7 @@ button {
     padding: 6px 10px;
     margin: 5px;
     border: none;
-    background-color: #007bff;
+    background-color: #dc3545;
     color: #fff;
     cursor: pointer;
     border-radius: 4px;
@@ -64,3 +64,76 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+#authentication {
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+#authentication h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #004d4d;
+    font-size: 24px;
+}
+
+#authTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#authTable th {
+    background-color: #e0f7f7;
+    color: #006666;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+#authTable td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#authTable tbody tr:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+#authTable .action-btn {
+    padding: 6px 10px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#authTable .action-btn:hover {
+    background-color: #0056b3;
+}
+
+#authTable .edit-btn {
+    background-color: #28a745;
+}
+
+#authTable .delete-btn {
+    background-color: #dc3545;
+}
+
+#authTable .role-admin {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+#authTable .role-user {
+    color: #28a745;
+    font-weight: bold;
+}
+

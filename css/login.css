@@ -89,7 +89,7 @@ body, html {
     display: block;
     text-align: left;
     margin-bottom: 0.5rem; /* Reduced space between label and input */
-    margin-left: 6.5rem; /* No margin */
+    margin-left: 4.5rem; /* No margin */
 }
 
 /* Input Fields */
@@ -188,7 +188,19 @@ body, html {
     font-size: 0.9rem;
     margin-top: 1rem;
 }
+/* Forgot Password Link Styling */
+#forgot-password-link {
+    color: #0066cc;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: -1.5rem;
+    display: inline-block;
+}
 
+#forgot-password-link:hover {
+    text-decoration: underline;
+}
 .sign-up-link {
     color: #0066cc;
     text-decoration: none;
@@ -232,22 +244,51 @@ body, html {
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
-    overflow: auto; /* Enable scroll if needed */
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+    /* Flexbox centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on your design */
-    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    box-shadow: 
+        0 10px 25px rgba(0,0,0,0.1),
+        0 4px 10px rgba(0,0,0,0.05);
+    
+    /* Absolute centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #333;
 }
 
 button {
@@ -268,86 +309,172 @@ button:hover {
 }
   
   
+/* Add these adjustments to your existing mobile media query section */
 
-/* Global Styles - Mobile adjustments */
 @media (max-width: 480px) {
     body, html {
-        font-size: 14px; /* Reduce font size for better readability */
-    }  
+        font-size: 14px; /* Slightly smaller base font size */
+    }
 
-    /* Hero Section */
+    .resource-hive-container {
+        padding: 0 10px; /* Add some side padding */
+    }
+
     .hero-section {
         flex-direction: column;
-        text-align: center;
-        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
     }
 
-    .hero-image {
-        opacity: 0.8; /* Slightly reduce background opacity for better contrast */
-    }
-
-    /* Login Card */
     .login-card {
-        width: 80%; /* Make the card take up more screen width */
-        padding: 1rem; /* Add balanced padding */
-        margin: 0 0; /* Center the card */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soften shadows */
+        width: 80%; /* Full width on mobile */
+        max-width: 100%; /* Ensure it spans full width */
+        padding: 1.5rem;
+        margin: 0;
+        border-radius: 16px;
+        box-shadow: 
+            0 10px 20px rgba(0, 0, 0, 0.1),
+            0 6px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+        width: 80px;
+        margin-bottom: 0.5rem;
     }
 
     .app-title {
-        font-size: 1.5rem; /* Reduce title size */
+        font-size: 1.8rem;
+        margin: 0.2rem 0;
+        line-height: 1.2;
     }
 
     .app-description {
         font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        color: rgba(0, 0, 0, 0.7);
     }
 
-    /* Form Labels and Inputs */
+    .input-wrapper {
+        margin-bottom: 0.5rem;
+    }
+
     .email-label, .password-label {
-        margin-left: 0; /* Align labels to the left edge */
-        text-align: center; /* Center align labels */
-        font-size: 1rem; /* Adjust label font size */
-        margin-bottom: 0.25rem; /* Reduce spacing */
+        font-size: 1rem;
+        margin-left: 0;
+        text-align: left;
+        margin-bottom: 0.3rem;
     }
 
     .email-input, .password-input {
-        width: 100%; /* Input fields take up full width */
-        margin-left: 0; /* Center inputs on the screen */
-        padding: 0.75rem; /* Adjust padding */
+        width: 100%;
+        max-width: 100%;
+        padding: 0.7rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
     }
 
-    /* Buttons */
     .button-container {
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 0.5rem; /* Add space between buttons */
-        justify-content: center; /* Center buttons */
-        align-items: center; /* Align buttons horizontally */
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
     }
 
-    .login-button, #google-login-btn {
-        width: 100%; /* Make buttons full width */
-        font-size: 1rem; /* Adjust button font size */
-        padding: 0.5rem; /* Balanced padding */
-        text-align: center; /* Center button text */
-        margin: 0; /* Remove extra margins */
+    #google-login-btn, .login-button {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    #google-login-btn {
-        background-color: #db4437; /* Ensure correct Google button color */
+    .google-logo {
+        width: 24px;
+        margin-right: 8px;
     }
 
-    /* Footer */
+    .login-message {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .sign-up-text, .forgot-password-text {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+
+    #forgot-password-link {
+        font-size: 0.8rem;
+        margin-top: -1.5rem;
+    }
+
     .footer {
-        padding: 1rem; /* Compact footer padding */
-        font-size: 0.8rem; /* Reduce footer font size */
+        position: relative;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        width: 100vw; /* Use viewport width to cover entire width */
+        left: 50%; /* Center the footer */
+        right: 50%; /* Center the footer */
+        margin-left: -50vw; /* Offset to cover full width */
+        margin-right: -50vw;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0.5rem;
+        max-width: 100%; /* Ensure content doesn't exceed screen width */
+        margin: 0 auto; /* Center the content */
+    }
+    
+    .footer-department {
+        margin-top: 0.5rem;
+        font-size: 0.7rem;
+        width: 100%;
     }
 
+    .modal-content {
+        width: 90%;
+        max-width: 320px;
+        padding: 20px;
+    }
+}
+
+/* Additional improvements for slightly larger mobile screens */
+@media (min-width: 481px) and (max-width: 768px) {
+    .login-card {
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .app-title {
+        font-size: 2rem;
+    }
+
+    .app-description {
+        font-size: 1rem;
+    }
     .footer-content {
-        flex-direction: column; /* Stack footer items */
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 
     .footer-department {
+        margin-top: 0.5rem;
         font-size: 0.8rem;
+    }
+}
+
+/* Ensure proper text scaling */
+@media screen and (max-width: 768px) {
+    .app-title {
+        font-size: calc(1.5rem + 2vw);
+    }
+
+    .app-description {
+        font-size: calc(0.9rem + 0.5vw);
     }
 }

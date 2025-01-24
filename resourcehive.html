@@ -80,6 +80,32 @@
             </div>
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Function to prevent navigation to login page if logged in
+            function preventLoginRedirect() {
+                // Check if current page is not already index.html or resourcehive.html
+                const currentPage = window.location.pathname.split('/').pop();
+                const allowedPages = ['index.html', 'resourcehive.html', ''];
+                
+                if (isLoggedIn && !allowedPages.includes(currentPage)) {
+                    // Redirect to home page if logged in and trying to access login
+                    if (currentPage === 'login.html') {
+                        window.location.href = 'resourcehive.html';
+                    }
+                }
+            }
+            
+            // Run prevention check
+            preventLoginRedirect();
+            
+            // Optional: Add event listener for potential dynamic page changes
+            window.addEventListener('popstate', preventLoginRedirect);
+        });
+    </script>
     
     <div id="footer-placeholder"></div>
 

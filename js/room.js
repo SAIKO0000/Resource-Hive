@@ -37,6 +37,35 @@
     const reservation = {
         startTimestamp: Timestamp.fromDate(new Date())
     };
+    function initializeRealtimeUpdates() {
+        const roomName = getRoomFromURL();
+        const dayDropdown = document.querySelector('#dayDropdown');
+        
+        const realtimeUpdate = setInterval(async () => {
+            if (roomName && dayDropdown.value) {
+                await fetchRoomData(roomName, dayDropdown.value);
+                await monitorReservationsForAutoCancel();
+                await checkUpcomingReservations();
+                console.log("Real-time update completed:", new Date().toLocaleString());
+            }
+        }, 5000); // Update every 5 seconds
+    
+        // Pause updates when page is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(realtimeUpdate);
+                console.log("Updates paused - page hidden");
+            } else {
+                initializeRealtimeUpdates();
+                console.log("Updates resumed - page visible");
+            }
+        });
+    
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            clearInterval(realtimeUpdate);
+        });
+    }
     /**
      * Function to close the time modal.
      */
@@ -92,32 +121,28 @@
         try {
             const q = query(collection(db, "scheduleData"));
             const querySnapshot = await getDocs(q);
-
-            if (querySnapshot.empty) {
-                console.error("No documents found in Firestore.");
-                return;
-            }
-
-            querySnapshot.forEach((docRef) => {
+    
+            if (querySnapshot.empty) return;
+    
+            const updates = querySnapshot.docs.map(async (docRef) => {
                 const data = docRef.data();
-
-                if (data && Array.isArray(data.scheduleData)) {
-                    const roomData = data.scheduleData.flatMap((entry) => entry.rooms)
-                        .find((room) => room.name.trim().toLowerCase() === roomName.trim().toLowerCase());
-
+                if (data?.scheduleData) {
+                    const roomData = data.scheduleData
+                        .flatMap(entry => entry.rooms)
+                        .find(room => room.name.trim().toLowerCase() === roomName.trim().toLowerCase());
+    
                     if (roomData) {
-                        displayRoomInfo(roomData, selectedDay, docRef.id);
-                    } else {
-                        console.error(`Room "${roomName}" not found in Firestore.`);
+                        await displayRoomInfo(roomData, selectedDay, docRef.id);
                     }
-                } else {
-                    console.error("No 'scheduleData' array found or it's in the wrong format.");
                 }
             });
+    
+            await Promise.all(updates);
         } catch (error) {
-            console.error("Error fetching room data from Firestore:", error);
+            console.error("Error fetching room data:", error);
         }
     }
+    
 
     /**
      * Function to display room information in the UI.
@@ -141,29 +166,28 @@
      * @param {string} day - The selected day.
      * @returns {Array} An array of reserved slots.
      */
-    async function fetchReservedData(roomName, day) { // <-- Added day parameter
-        const reservedData = [];
-        try {
-            const q = query(
-                collection(db, "updatedSchedule"),
-                where("room", "==", roomName),
-                where("day", "==", day) // <-- Added day filter
-            );
-            const querySnapshot = await getDocs(q);
+   async function fetchReservedData(roomName, day) {
+    const reservedData = [];
+    try {
+        const q = query(
+            collection(db, "updatedSchedule"),
+            where("room", "==", roomName),
+            where("day", "==", day),
+            where("status", "==", "Occupied") // Only fetch occupied slots
+        );
+        const querySnapshot = await getDocs(q);
 
-            querySnapshot.forEach(doc => {
-                const data = doc.data();
-                // Ensure that 'reservedBy' exists and is not empty
-                if (data.reservedBy && data.reservedBy.trim() !== "") {
-                    reservedData.push(data);
-                }
-            });
-        } catch (error) {
-            console.error("Error fetching reserved data:", error);
-        }
-        return reservedData;
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            if (data.reservedBy && data.reservedBy.trim() !== "") {
+                reservedData.push(data);
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching reserved data:", error);
     }
-
+    return reservedData;
+}
 
 
  /**
@@ -186,62 +210,107 @@
     }
 
     const reservedData = await fetchReservedData(room.name, day);
-
+    
+    // Get full names for all reservations at once
     for (let reservation of reservedData) {
         reservation.fullName = await getFullNameByEmail(reservation.reservedBy);
     }
 
-    let tableHTML = `
-        <table border="1" cellpadding="8" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Status</th>
-                    <th>Check-In / Check-Out</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${daySchedule.map(slot => {
-                    const reservation = reservedData.find(res => res.time === slot.time);
-                    const rowClass = slot.status === "Available" ? "status-available" : "status-occupied";
-                    const checkInOut = reservation ? ` 
-                        <br><small>Checked In At: ${reservation.checkedInAt ? new Date(reservation.checkedInAt.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) : 'N/A'}</small>
-                    ` : '';
-                    
-                    return `
-                        <tr class="${rowClass}">
-                            <td>${slot.time}</td>
-                            <td>
-                                ${slot.status === "Available" ? `
-                                    Available
-                                    <input type="checkbox" class="select-slot" 
-                                        data-time="${slot.time}" 
-                                        data-docid="${docId}" 
-                                        data-room="${room.name}" 
-                                        style="margin-left: 10px;">
-                                ` : `
-                                    Occupied
-                                   ${reservation ? `<br><small>Reserved By: ${reservation.fullName || reservation.reservedBy}</small>` : ''}
+    // Create table structure
+    const table = document.createElement('table');
+    table.border = "1";
+    table.cellPadding = "8";
+    table.cellSpacing = "0";
 
-                                `}
-                            </td>
-                            <td>
-                                ${checkInOut}
-                                ${reservation ? `
-                                    <button class="in-btn" data-doc-id="${docId}" data-room="${room.name}" data-time="${slot.time}">IN</button>
-                                    <button class="out-btn" data-doc-id="${docId}" data-room="${room.name}" data-time="${slot.time}">OUT</button>
-                                ` : ''}
-                            </td>
-                            <td>
-                        </tr>
-                    `;
-                }).join('')}
-            </tbody>
-        </table>
+    const thead = document.createElement('thead');
+    thead.innerHTML = `
+        <tr>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Check-In Time</th>
+            <th>Actions</th>
+        </tr>
     `;
+    table.appendChild(thead);
 
-    scheduleContainer.innerHTML = tableHTML;
-    // Add event listeners for the IN and OUT buttons
+    const tbody = document.createElement('tbody');
+
+    // Process each time slot only once
+    const processedSlots = new Set();
+    
+    daySchedule.forEach(slot => {
+        // Skip if this slot has already been processed
+        if (processedSlots.has(slot.time)) return;
+        processedSlots.add(slot.time);
+
+        const reservation = reservedData.find(res => 
+            res.time === slot.time && 
+            res.status === "Occupied"
+        );
+
+        const rowClass = slot.status === "Available" ? "status-available" : "status-occupied";
+        
+        const checkInTime = reservation?.checkedInAt?.seconds 
+            ? `Checked In At: ${new Date(reservation.checkedInAt.seconds * 1000).toLocaleTimeString('en-US', {
+                timeZone: 'Asia/Manila',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            })}`
+            : (reservation ? 'Not checked in' : '');
+
+        const row = document.createElement('tr');
+        row.className = rowClass;
+        row.innerHTML = `
+            <td>${slot.time}</td>
+            <td>
+                ${slot.status === "Available" 
+                    ? `Available
+                        <input type="checkbox" class="select-slot"
+                            data-time="${slot.time}"
+                            data-docid="${docId}"
+                            data-room="${room.name}"
+                            style="margin-left: 10px;">`
+                    : `Occupied
+                        ${reservation 
+                            ? `<br><small>Reserved By: ${reservation.fullName || reservation.reservedBy}</small>` 
+                            : ''}`
+                }
+            </td>
+            <td>${checkInTime}</td>
+            <td>
+                ${slot.status === "Occupied" && reservation 
+                    ? `<button class="in-btn" 
+                        data-doc-id="${docId}" 
+                        data-room="${room.name}" 
+                        data-time="${slot.time}">IN</button>
+                        <button class="out-btn" 
+                        data-doc-id="${docId}" 
+                        data-room="${room.name}" 
+                        data-time="${slot.time}">OUT</button>`
+                    : ''}
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    scheduleContainer.innerHTML = ''; // Clear previous content
+    scheduleContainer.appendChild(table);
+
+    // Add event listeners for IN and OUT buttons
+    setupButtonEventListeners();
+
+    // Create and append Reserve Selected Times button
+    const reserveButton = createReserveButton(room.name, docId);
+    scheduleContainer.appendChild(reserveButton);
+
+    // Setup slot selection event listeners
+    setupSlotSelectionListeners();
+}
+
+function setupButtonEventListeners() {
     document.querySelectorAll('.in-btn').forEach(button => {
         button.addEventListener('click', async (event) => {
             const docId = event.target.getAttribute('data-doc-id');
@@ -252,6 +321,8 @@
     });
 
     document.querySelectorAll('.out-btn').forEach(button => {
+        button.style.backgroundColor = 'red';
+        button.style.color = 'white';
         button.addEventListener('click', async (event) => {
             const docId = event.target.getAttribute('data-doc-id');
             const roomName = event.target.getAttribute('data-room');
@@ -259,29 +330,22 @@
             await cancelReservation(docId, roomName, time);
         });
     });
+}
 
+function createReserveButton(roomName, docId) {
+    const reserveButton = document.createElement('button');
+    reserveButton.id = 'reserveSelectedTimesBtn';
+    reserveButton.classList.add('open-modal-btn', 'btn', 'btn-primary');
+    reserveButton.textContent = "Reserve Selected Times";
+    
+    // Ensure initial hidden state
+    reserveButton.style.display = 'none';
 
-  
-    // Add the Reserve Selected Times button
-    const openModalButton = document.createElement('button');
-    openModalButton.classList.add('open-modal-btn');
-    openModalButton.style.display = "block";
-    openModalButton.style.margin = "20px auto";
-    openModalButton.style.marginLeft = "23rem";
-    openModalButton.style.padding = "10px 20px";
-    openModalButton.style.fontSize = "16px";
-    openModalButton.style.textAlign = "center";
-    openModalButton.style.cursor = "pointer";
-    openModalButton.style.backgroundColor = "#4CAF50";
-    openModalButton.style.color = "white";
-    openModalButton.style.border = "none";
-    openModalButton.style.borderRadius = "5px";
-    openModalButton.textContent = "Reserve Selected Times";
-    openModalButton.addEventListener('click', () => {
+    reserveButton.addEventListener('click', () => {
         const selectedSlots = Array.from(document.querySelectorAll('.select-slot:checked')).map(slot => ({
             time: slot.getAttribute('data-time'),
-            room: slot.getAttribute('data-room'),
-            docId: slot.getAttribute('data-docid')
+            room: roomName,
+            docId: docId
         }));
 
         if (selectedSlots.length > 0) {
@@ -291,14 +355,26 @@
         }
     });
 
-    scheduleContainer.appendChild(openModalButton);
+    return reserveButton;
 }
 
+function setupSlotSelectionListeners() {
+    const selectSlots = document.querySelectorAll('.select-slot');
+    const reserveBtn = document.getElementById('reserveSelectedTimesBtn');
+    
+    selectSlots.forEach(slot => {
+        slot.addEventListener('change', () => {
+            const checkedSlots = document.querySelectorAll('.select-slot:checked');
+            
+            if (checkedSlots.length > 0) {
+                reserveBtn.style.display = 'block';
+            } else {
+                reserveBtn.style.display = 'none';
+            }
+        });
+    });
+}
 
-
-
-
-// Modify the cancelReservation function to handle automated cancellation
 async function cancelReservation(docId, roomName, time) {
     try {
         const user = auth.currentUser;
@@ -310,7 +386,6 @@ async function cancelReservation(docId, roomName, time) {
         const dayDropdown = document.querySelector('#dayDropdown');
         const day = dayDropdown.value;
 
-        // Query the updatedSchedule collection to find the specific reservation
         const q = query(
             collection(db, "updatedSchedule"),
             where("room", "==", roomName),
@@ -326,38 +401,41 @@ async function cancelReservation(docId, roomName, time) {
             return;
         }
 
-        // Get the first matching document
         const reservationDoc = querySnapshot.docs[0];
         const reservationRef = doc(db, "updatedSchedule", reservationDoc.id);
 
-        // Update the document to make it available and clear all check-in fields, set checkedOutAt
         await updateDoc(reservationRef, {
             status: "Available",
             reservedBy: "",
             reason: "",
             checkedInAt: null,
-            checkedOutAt: serverTimestamp(),  // Set checkedOutAt to the current time when the OUT button is clicked
+            checkedOutAt: serverTimestamp(),
         });
 
-        // Update the corresponding slot in scheduleData to "Available"
         await updateScheduleData(roomName, day, time);
 
-        // Update the UI dynamically
+        // Immediately update the UI
         const tableRows = document.querySelectorAll('.schedule-table tbody tr');
         tableRows.forEach(row => {
             const timeCell = row.querySelector('td:first-child');
             if (timeCell.textContent.trim() === time) {
                 const statusCell = row.querySelector('td:nth-child(2)');
-                statusCell.innerHTML = `
-                    Available
+                const checkInTimeCell = row.querySelector('td:nth-child(3)'); // Target Check-In Time column
+                const actionsCell = row.querySelector('td:nth-child(4)'); // Target Actions column
+                
+                // Update status cell
+                statusCell.innerHTML = `Available
                     <input type="checkbox" class="select-slot" 
                         data-time="${time}" 
                         data-docid="${docId}" 
                         data-room="${roomName}" 
-                        style="margin-left: 10px;">
-                `;
-                const checkInOutCell = row.querySelector('td:nth-child(3)');
-                checkInOutCell.innerHTML = ''; // Remove check-in/out buttons
+                        style="margin-left: 10px;">`;
+                
+                // Clear check-in time
+                checkInTimeCell.innerHTML = '';
+                
+                // Clear actions cell
+                actionsCell.innerHTML = '';
             }
         });
 
@@ -370,6 +448,7 @@ async function cancelReservation(docId, roomName, time) {
     }
 }
 
+
 async function monitorReservationsForAutoCancel() {
     const user = auth.currentUser;
     if (!user) return;
@@ -377,47 +456,71 @@ async function monitorReservationsForAutoCancel() {
     const q = query(
         collection(db, "updatedSchedule"),
         where("reservedBy", "==", user.email),
-        where("status", "==", "Reserved")
+        where("status", "==", "Occupied")
     );
 
     const querySnapshot = await getDocs(q);
+    console.log(`Monitoring ${querySnapshot.size} reservations`);
 
-    querySnapshot.forEach(doc => {
+    querySnapshot.forEach(async (doc) => {
         const reservation = doc.data();
-        const roomName = reservation.room;
-        const time = reservation.time;
-        const createdAt = reservation.createdAt.toDate();
-        const checkedInAt = reservation.checkedInAt;
-
+        
+        // Get current time in Philippines timezone
         const now = new Date();
-        const phTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
-        const reservationStartTime = new Date(`${new Date().toLocaleDateString()} ${time}`);
-        const timeLimit = 10 * 60 * 1000;
+        const phNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
+        
+        // Convert startTimestamp to Date object
+        const startTime = new Date(reservation.startTimestamp.seconds * 1000);
+        
+        // Calculate time difference in seconds
+        const timeDiff = (phNow.getTime() - startTime.getTime()) / 1000;
+        
+        console.log({
+            room: reservation.room,
+            startTime: startTime.toLocaleString(),
+            currentTime: phNow.toLocaleString(),
+            timeDiff: `${timeDiff} seconds`,
+            checkedInAt: reservation.checkedInAt
+        });
 
-        if (reservationStartTime.getTime() + timeLimit < phTime.getTime() && !checkedInAt) {
-            autoClickOutButton(roomName, time);
-            autoCheckOutReservation(doc.id, roomName, time);
+        // If 30 seconds have passed and not checked in
+        if (timeDiff >= 30 && !reservation.checkedInAt) {
+            console.log(`Auto-canceling reservation for ${reservation.room}`);
+            
+            // First try to find and click the OUT button
+            await autoClickOutButton(reservation.room, reservation.time);
+            
+            // If button click fails, perform the cancellation directly
+            if (!document.querySelector(`.out-btn[data-room="${reservation.room}"][data-time="${reservation.time}"]`)) {
+                await autoCheckOutReservation(doc.id, reservation.room, reservation.time);
+            }
         }
     });
 }
 
-setInterval(monitorReservationsForAutoCancel, 30 * 1000);
-
 async function autoClickOutButton(roomName, time) {
     try {
         const tableRows = document.querySelectorAll('.schedule-table tbody tr');
+        let buttonFound = false;
+
         tableRows.forEach(row => {
             const timeCell = row.querySelector('td:first-child');
             if (timeCell.textContent.trim() === time) {
                 const outButton = row.querySelector('.out-btn');
                 if (outButton) {
                     outButton.click();
+                    buttonFound = true;
                     console.log("Automatically clicked OUT button for reservation at " + time);
                 }
             }
         });
+
+        if (!buttonFound) {
+            throw new Error("OUT button not found");
+        }
     } catch (error) {
         console.error("Error while automatically clicking OUT button:", error);
+        throw error;
     }
 }
 
@@ -426,10 +529,7 @@ async function autoCheckOutReservation(docId, roomName, time) {
         const reservationRef = doc(db, "updatedSchedule", docId);
 
         await updateDoc(reservationRef, {
-            checkedOutAt: serverTimestamp()
-        });
-
-        await updateDoc(reservationRef, {
+            checkedOutAt: serverTimestamp(),
             status: "Available",
             reservedBy: "",
             reason: "",
@@ -441,25 +541,28 @@ async function autoCheckOutReservation(docId, roomName, time) {
         const day = dayDropdown.value;
         await updateScheduleData(roomName, day, time);
 
+        // Update UI
         const tableRows = document.querySelectorAll('.schedule-table tbody tr');
         tableRows.forEach(row => {
             const timeCell = row.querySelector('td:first-child');
             if (timeCell.textContent.trim() === time) {
                 const statusCell = row.querySelector('td:nth-child(2)');
+                const checkInTimeCell = row.querySelector('td:nth-child(3)');
+                const actionsCell = row.querySelector('td:nth-child(4)');
+
                 statusCell.innerHTML = `Available
                     <input type="checkbox" class="select-slot" 
                         data-time="${time}" 
                         data-docid="${docId}" 
                         data-room="${roomName}" 
                         style="margin-left: 10px;">`;
-
-                const checkInOutCell = row.querySelector('td:nth-child(3)');
-                checkInOutCell.innerHTML = '';
+                checkInTimeCell.innerHTML = '';
+                actionsCell.innerHTML = '';
             }
         });
 
         console.log("Reservation automatically checked out!");
-        alert(`Reservation for ${roomName} has been automatically checked out and is now available for booking.`);
+        alert(`Reservation for ${roomName} has been automatically checked out due to no check-in within 30 seconds.`);
     } catch (error) {
         console.error("Error while automatically checking out reservation:", error);
     }
@@ -569,9 +672,7 @@ async function confirmReservation() {
             return;
         }
 
-        // Get user's full name
         const fullName = await getFullNameByEmail(user.email);
-
         const dayDropdown = document.querySelector('#dayDropdown');
         const selectedDay = dayDropdown.value || "monday";
 
@@ -600,10 +701,9 @@ async function confirmReservation() {
                                 if (dayKey.toLowerCase() === selectedDay.toLowerCase()) {
                                     r.schedule[dayKey] = r.schedule[dayKey].map(slot => {
                                         if (slot.time === time && slot.status === "Available") {
-                                            // Fix: Correct time parsing by adding date in the correct format
                                             const [startTime, endTime] = time.split(' - ').map(timeStr => {
-                                                const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
-                                                return new Date(`${currentDate} ${timeStr} GMT+0800`); // Correct format with time zone (Asia/Manila)
+                                                const currentDate = new Date().toISOString().split('T')[0];
+                                                return new Date(`${currentDate} ${timeStr} GMT+0800`);
                                             });
 
                                             return { 
@@ -611,7 +711,7 @@ async function confirmReservation() {
                                                 status: "Occupied", 
                                                 reason: reservationReason, 
                                                 reservedBy: user.email,
-                                                fullName: fullName, // Add fullName to the schedule data
+                                                fullName: fullName,
                                                 startTimestamp: Timestamp.fromDate(startTime),
                                                 endTimestamp: Timestamp.fromDate(endTime)
                                             };
@@ -632,37 +732,55 @@ async function confirmReservation() {
             const reservationData = {
                 room,
                 reservedBy: user.email,
-                fullName: fullName, // Add fullName to reservation data
+                fullName: fullName,
                 time,
                 reason: reservationReason,
                 status: "Occupied",
                 day: selectedDay,
                 checkedInAt: "N/A",
                 checkedOutAt: "N/A",
-                startTimestamp: Timestamp.fromDate(new Date(`${new Date().toISOString().split('T')[0]} ${time.split(' - ')[0]} GMT+0800`)),  // Fixed startTimestamp
-                endTimestamp: Timestamp.fromDate(new Date(`${new Date().toISOString().split('T')[0]} ${time.split(' - ')[1]} GMT+0800`)),    // Fixed endTimestamp
+                startTimestamp: Timestamp.fromDate(new Date(`${new Date().toISOString().split('T')[0]} ${time.split(' - ')[0]} GMT+0800`)),
+                endTimestamp: Timestamp.fromDate(new Date(`${new Date().toISOString().split('T')[0]} ${time.split(' - ')[1]} GMT+0800`)),
                 createdAt: serverTimestamp()
             };
 
             await addDoc(collection(db, "updatedSchedule"), reservationData);
+
+            const rows = document.querySelectorAll('.schedule-table tbody tr');
+            rows.forEach(row => {
+                const timeCell = row.querySelector('td:first-child');
+                if (timeCell.textContent.trim() === time) {
+                    const statusCell = row.querySelector('td:nth-child(2)');
+                    statusCell.innerHTML = `Occupied<br><small>Reserved By: ${fullName}</small>`;
+                    
+                    const checkInTimeCell = row.querySelector('td:nth-child(3)');
+                    checkInTimeCell.textContent = 'Not checked in';
+                    
+                    const actionsCell = row.querySelector('td:nth-child(4)');
+                    actionsCell.innerHTML = `
+                        <button class="in-btn" data-doc-id="${docId}" data-room="${room}" data-time="${time}">IN</button>
+                        <button class="out-btn" data-doc-id="${docId}" data-room="${room}" data-time="${time}">OUT</button>
+                    `;
+
+                    const checkbox = row.querySelector('.select-slot');
+                    if (checkbox) checkbox.remove();
+                }
+            });
+
+            const newInBtn = document.querySelector(`button.in-btn[data-time="${time}"]`);
+            const newOutBtn = document.querySelector(`button.out-btn[data-time="${time}"]`);
+
+            if (newInBtn) {
+                newInBtn.addEventListener('click', () => markReservationIn(docId, room, time));
+            }
+            if (newOutBtn) {
+                newOutBtn.addEventListener('click', () => cancelReservation(docId, room, time));
+            }
         }
 
         alert("Reservations confirmed!");
         closeTimeModal();
 
-        // Update the schedule dynamically with full name
-        selectedSlots.forEach(slot => {
-            const rows = document.querySelectorAll('.schedule-table tbody tr');
-            rows.forEach(row => {
-                const timeCell = row.querySelector('td:first-child');
-                if (timeCell.textContent.trim() === slot.time) {
-                    const statusCell = row.querySelector('td:nth-child(2)');
-                    statusCell.innerHTML = `Occupied<br><small>Reserved By: ${fullName}</small>`; // Use fullName instead of email
-                    const checkbox = statusCell.querySelector('.select-slot');
-                    if (checkbox) checkbox.remove();
-                }
-            });
-        });
     } catch (error) {
         console.error("Error confirming reservations:", error);
         alert("Error reserving the selected times. Please try again.");
@@ -670,59 +788,60 @@ async function confirmReservation() {
 }
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const roomName = getRoomFromURL();
-        console.log("Fetched room name:", roomName);
-        
-        if (!roomName) {
-            console.error("Room not found in URL! Please select a valid room.");
+
+document.addEventListener('DOMContentLoaded', () => {
+    const roomName = getRoomFromURL();
+    console.log("Fetched room name:", roomName);
+    
+    if (!roomName) {
+        console.error("Room not found in URL! Please select a valid room.");
+        return;
+    }
+    
+    const dayDropdown = document.querySelector('#dayDropdown');
+    if (!dayDropdown) {
+        console.error("Day dropdown not found!");
+        return;
+    }
+    
+    const selectedDay = dayDropdown.value || "";
+    
+    if (selectedDay) {
+        fetchRoomData(roomName, selectedDay);
+    }
+    
+    dayDropdown.addEventListener('change', () => {
+        const selectedDay = dayDropdown.value;
+        const scheduleTable = document.querySelector('.schedule-table');
+        if (!scheduleTable) {
+            console.error("Schedule table not found!");
             return;
         }
-        
-        const dayDropdown = document.querySelector('#dayDropdown');
-        if (!dayDropdown) {
-            console.error("Day dropdown not found!");
-            return;
-        }
-        
-        const selectedDay = dayDropdown.value || "";
-        
+    
         if (selectedDay) {
             fetchRoomData(roomName, selectedDay);
-        }
-        
-        dayDropdown.addEventListener('change', () => {
-            const selectedDay = dayDropdown.value;
-            const scheduleTable = document.querySelector('.schedule-table');
-            if (!scheduleTable) {
-                console.error("Schedule table not found!");
-                return;
-            }
-        
-            if (selectedDay) {
-                fetchRoomData(roomName, selectedDay);
-            } else {
-                const messageElement = document.createElement('p');
-                messageElement.textContent = "Please select a day to view the schedule.";
-        
-                // Clear any previous content in schedule table
-                scheduleTable.innerHTML = '';
-                scheduleTable.appendChild(messageElement);
-        
-                // Center the message using flexbox
-     
-                scheduleTable.style.justifyContent = 'center'; // Horizontal centering
-                scheduleTable.style.alignItems = 'center';     // Vertical centering (optional)
+        } else {
+            const messageElement = document.createElement('p');
+            messageElement.textContent = "";
+    
+            // Clear any previous content in schedule table
+            scheduleTable.innerHTML = '';
+            scheduleTable.appendChild(messageElement);
+    
+            // Center the message using flexbox
+ 
+            scheduleTable.style.justifyContent = 'center'; // Horizontal centering
+            scheduleTable.style.alignItems = 'center';     // Vertical centering (optional)
 
-        
-                messageElement.style.textAlign = 'center';  // Ensure text is centered
-                messageElement.style.padding = '20px 0';   
-                messageElement.style.marginRight = '160px';  // Optional padding
-        
-                console.log("Message centered and appended.");
-            }
-        });
+    
+            messageElement.style.textAlign = 'center';  // Ensure text is centered
+            messageElement.style.padding = '20px 0';   
+            messageElement.style.marginRight = '160px';  // Optional padding
+    
+            console.log("Message centered and appended.");
+        }
     });
+});
     
     
 
@@ -843,25 +962,36 @@ function canCheckIn(startTimestamp) {
         return false;
     }
 
-    // Get the current date and time in the Philippines
+    // Get current time in Philippines timezone
     const now = new Date();
     const phNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
-    console.log("Current PH Time:", phNow);
-
+    
     // Convert Firestore startTimestamp to local PH time
-    const startTime = new Date(startTimestamp.seconds * 1000); // Firestore timestamp in UTC
+    const startTime = new Date(startTimestamp.seconds * 1000);
     const phStartTime = new Date(startTime.toLocaleString('en-US', { timeZone: 'Asia/Manila' }));
 
-    console.log("Reservation Start Time in PH:", phStartTime);
-
-    // Calculate the time window: 5 minutes before the reservation start time
+    // Calculate time windows
     const checkInStart = new Date(phStartTime.getTime() - 5 * 60 * 1000); // 5 minutes before
+    const checkInEnd = new Date(phStartTime.getTime() + 5 * 60 * 1000);   // 5 minutes after
 
-    console.log("Allowed Check-In Start Time:", checkInStart);
+    // Check if current time is within the allowed window
+    const canCheck = phNow >= checkInStart && phNow <= checkInEnd;
 
-    // Compare if current time (phNow) is within or after the check-in window
-    const canCheck = phNow >= checkInStart;
-    console.log("Can Check In:", canCheck);
+    console.log({
+        currentTime: phNow.toLocaleString(),
+        reservationTime: phStartTime.toLocaleString(),
+        checkInWindowStart: checkInStart.toLocaleString(),
+        checkInWindowEnd: checkInEnd.toLocaleString(),
+        canCheckIn: canCheck
+    });
+
+    if (!canCheck) {
+        if (phNow > checkInEnd) {
+            alert("Check-in time has expired. You can only check in within 5 minutes before or after the reservation time.");
+        } else if (phNow < checkInStart) {
+            alert("It's too early to check in. You can check in starting 5 minutes before your reservation time.");
+        }
+    }
 
     return canCheck;
 }
@@ -874,16 +1004,14 @@ async function markReservationIn(docId, roomName, time) {
             return;
         }
 
-        // Get the selected day from the dropdown
         const dayDropdown = document.querySelector('#dayDropdown');
-        const selectedDay = dayDropdown.value || "monday"; // Get the selected day, default to 'monday'
+        const selectedDay = dayDropdown.value || "monday";
 
-        // Query the updatedSchedule collection to find the specific reservation
         const q = query(
             collection(db, "updatedSchedule"),
-            where("room", "==", roomName),  // Match room name
-            where("day", "==", selectedDay), // Match the selected day
-            where("time", "==", time) // Match the time
+            where("room", "==", roomName),
+            where("day", "==", selectedDay),
+            where("time", "==", time)
         );
 
         const querySnapshot = await getDocs(q);
@@ -897,54 +1025,45 @@ async function markReservationIn(docId, roomName, time) {
         const reservationDoc = querySnapshot.docs[0];
         const reservationData = reservationDoc.data();
 
-        console.log("Reservation Data:", reservationData);
-
-        // Convert the time to Timestamps
-        const [startTimeStr, endTimeStr] = time.split(' - ');
-        const now = new Date();
-        const dateStr = now.toISOString().split('T')[0];  // Current date (YYYY-MM-DD)
-        
-        const startTime = new Date(`${dateStr} ${startTimeStr}`);
-        const endTime = new Date(`${dateStr} ${endTimeStr}`);
-        
-        const startTimestamp = Timestamp.fromDate(startTime);
-        const endTimestamp = Timestamp.fromDate(endTime);
-
-        console.log("Converted Start Timestamp:", startTimestamp);
-        console.log("Converted End Timestamp:", endTimestamp);
-
-        // Ensure startTimestamp exists in the data
-        if (!startTimestamp) {
-            console.error("Start timestamp is missing from reservation data.");
-            alert("No valid reservation timestamp found.");
-            return;
-        }
-
-        // Proceed with checking if the user can check in
-        if (!canCheckIn(startTimestamp)) {
+        if (!canCheckIn(reservationData.startTimestamp)) {
             alert("You can only check in 5 minutes before or later than the reserved time.");
             return;
         }
 
         const reservationRef = doc(db, "updatedSchedule", reservationDoc.id);
+        const checkInTime = serverTimestamp();
 
         // Update the document with check-in timestamp
         await updateDoc(reservationRef, {
-            checkedInAt: serverTimestamp(),
+            checkedInAt: checkInTime,
             status: "Occupied"
         });
+
+        // Immediately update the UI
+        const row = document.querySelector(`tr td:first-child[innerText="${time}"]`)?.parentElement;
+        if (row) {
+            const checkInCell = row.querySelector('td:nth-child(3)');
+            if (checkInCell) {
+                const now = new Date();
+                checkInCell.textContent = now.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Manila'
+                });
+            }
+        }
 
         console.log("Successfully checked in!");
         alert("You have successfully checked in!");
 
-        // Update the UI dynamically without reloading
-        fetchRoomData(roomName, selectedDay);  // Re-fetch and update the schedule
+        // Refresh the entire schedule display
+        await fetchRoomData(roomName, selectedDay);
     } catch (error) {
         console.error("Error marking as IN:", error);
         alert("Failed to mark as IN. Please try again.");
     }
 }
-
 
 
 async function setupInButtons() {
@@ -966,7 +1085,7 @@ setupInButtons();
 
 
 // Call the function with your Firestore document ID
-convertTimeToTimestamps('5EM1usdO8pr12dXT4r4A');
+convertTimeToTimestamps('fvkEyQiLsd9dsCLBgSdd');
 
 async function checkNotificationPermission() {
     if (!("Notification" in window)) {
@@ -1056,7 +1175,7 @@ async function checkUpcomingReservations() {
 
                 // Log if notification condition is met
                 if (!localStorage.getItem(notificationKey)) {
-                    if (timeDiffMinutes <= 15 && timeDiffMinutes > 14) {
+                    if (timeDiffMinutes <= 42 && timeDiffMinutes > 41) {
                         console.log("Sending 15-minute notification...");
                         showReservationAlert(
                             "15 Minutes Until Reservation",
@@ -1100,7 +1219,7 @@ function showReservationAlert(title, message, notificationKey) {
             silent: false
         });
 
-        notification.onclick = function() {
+        notification.xonclick = function() {
             window.focus();
             this.close();
         };
@@ -1149,3 +1268,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
 console.log("Room:", reservation.room);
 console.log("Reservation time:", formatTime(phStartTime));
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const roomName = getRoomFromURL();
+    console.log("Fetched room name:", roomName);
+    
+    if (!roomName) {
+        console.error("Room not found in URL! Please select a valid room.");
+        return;
+    }
+    
+    const dayDropdown = document.querySelector('#dayDropdown');
+    if (!dayDropdown) {
+        console.error("Day dropdown not found!");
+        return;
+    }
+    
+    const selectedDay = dayDropdown.value || "";
+    
+    if (selectedDay) {
+        fetchRoomData(roomName, selectedDay);
+    }
+
+    // Initialize real-time updates
+    if (roomName) {
+        initializeRealtimeUpdates();
+    }
+    
+    dayDropdown.addEventListener('change', () => {
+        const selectedDay = dayDropdown.value;
+        const scheduleTable = document.querySelector('.schedule-table');
+        if (!scheduleTable) {
+            console.error("Schedule table not found!");
+            return;
+        }
+    
+        if (selectedDay) {
+            fetchRoomData(roomName, selectedDay);
+        } else {
+            const messageElement = document.createElement('p');
+            messageElement.textContent = "Please select a day to view the schedule.";
+    
+            scheduleTable.innerHTML = '';
+            scheduleTable.appendChild(messageElement);
+    
+            scheduleTable.style.justifyContent = 'center';
+            scheduleTable.style.alignItems = 'center';     
+            messageElement.style.textAlign = 'center';
+            messageElement.style.padding = '20px 0';   
+            messageElement.style.marginRight = '160px';
+            
+            console.log("Message centered and appended.");
+        }
+    });
+
+    // Initialize notification system
+    initializeNotificationSystem();
+});

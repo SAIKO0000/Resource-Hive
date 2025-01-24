@@ -1,109 +1,227 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(
+/* Global Reset and Modern Base Styles */
+:root {
+    --primary-color: #008080;
+    --secondary-color: #006666;
+    --background-gradient: linear-gradient(
         135deg,
         #006666 0%,
         #008080 50%,
         #40E0D0 100%
     );
-    color: white;
+    --white-transparent: rgba(255, 255, 255, 0.95);
+    --text-color: #006666;
 }
 
-header {
-    background-color: #008080;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-h1 {
+* {
     margin: 0;
-}
-
-main {
-    padding: 2rem;
-}
-
-.filter-container {
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.filter-container label {
-    font-weight: bold;
-    margin-right: 1rem;
-    color: #ffffff;
-}
-
-.filter-container select {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.chart-container {
-    margin-bottom: 2rem;
-}
-
-canvas {
-    display: block;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-}
-
-.stats-container {
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.stats-container h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem); /* Adjusts font size based on screen width */
-    color: #ffffff;
-    margin-bottom: 1rem;
-}
-
-.stats-container ul {
-    display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next row if necessary */
-    justify-content: center; /* Centers the items horizontally */
-    list-style-type: none;
     padding: 0;
-    gap: 1rem; /* Adds space between items */
+    box-sizing: border-box;
 }
 
-.stats-container ul li {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 0.5rem 1rem; /* Padding for better readability */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #333;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem); /* Dynamically adjust font size */
-    word-wrap: break-word; /* Break long words if necessary */
-    max-width: 300px; /* Limit maximum width of each list item */
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    background: var(--background-gradient);
+    color: white;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+header {
+    background-color: var(--primary-color);
     text-align: center;
+    padding: 1rem;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.chart-container {
-    margin-bottom: 2rem;
-    width: 90%; /* Adjust the width */
-    max-width: 1200px; /* Maximum width for larger screens */
-    margin-left: auto;
-    margin-right: auto; /* Center alignment */
-    height: 500px; /* Increased height */
+header h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Main Container */
+main {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Filter Container */
+.filter-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
 }
+
+.filter-container label {
+    color: white;
+    font-weight: 600;
+}
+
+.filter-container select {
+    width: 250px;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: var(--white-transparent);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.filter-container select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+}
+
+/* Analytics Section */
+#analytics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Chart Containers */
+.chart-container {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--white-transparent);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+}
+
 canvas {
-    width: 100%; /* Make the canvas occupy the full container width */
-    height: 100%; /* Adjust height proportionally */
-    border-radius: 10px;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px;
+}
+
+/* Stats Containers */
+.stats-container {
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stats-container:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.stats-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.stats-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 50px;
+    height: 3px;
+    background-color: white;
+    transform: translateX(-50%);
+}
+
+.stats-container ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    list-style: none;
+}
+
+.stats-container ul li {
+    background: var(--white-transparent);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-color);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.stats-container ul li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .filter-container select {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stats-container ul {
+        grid-template-columns: 1fr;
+    }
+
+    canvas {
+        max-height: 250px;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(
+            135deg,
+            #004d4d 0%,
+            #006666 50%,
+            #2e8b57 100%
+        );
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .stats-container ul li {
+        border: 1px solid #ddd;
+    }
 }
